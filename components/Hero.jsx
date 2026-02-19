@@ -35,6 +35,9 @@ export function Hero() {
             <p className="mt-5 max-w-md text-xl font-semibold leading-snug text-[var(--primary)] sm:text-2xl">
               {site.slogan}
             </p>
+            <p className="mt-3 max-w-md text-base font-normal leading-snug text-[var(--muted)] sm:text-lg">
+              Compromisso com o contexto, a história e a realidade de cada pessoa e organização.
+            </p>
 
             {/* CTA */}
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -57,15 +60,35 @@ export function Hero() {
             </p>
           </div>
 
-          {/* ── Coluna direita: logo ── */}
-          <div className="flex items-center justify-center">
-            <div className="relative flex items-center justify-center">
-              {/* Blob decorativo por trás da logo */}
-              <div className="absolute inset-0 scale-110 rounded-full bg-gradient-to-br from-blue-100/70 to-teal-100/50 blur-2xl" />
-              <img
-                src="/logo/logo2-removebg-preview.png"
-                alt={site.name}
-                className="relative block h-auto w-full max-w-[380px] bg-transparent object-contain drop-shadow-lg sm:max-w-[460px] lg:max-w-[520px]"
+          {/* ── Coluna direita: imagem com recorte orgânico (blob) ── */}
+          <div className="relative flex items-center justify-center md:justify-end">
+            <svg width="0" height="0" className="absolute" aria-hidden>
+              <defs>
+                <clipPath id="heroBlob" clipPathUnits="objectBoundingBox">
+                  <path d="M 0.1 0.05 Q 0.05 0.3 0.1 0.55 Q 0.04 0.8 0.12 0.98 L 0.4 1 Q 0.75 0.98 0.95 0.85 Q 1 0.5 0.98 0.15 Q 0.85 0 0.5 0.02 Q 0.15 0 0.1 0.05 Z" />
+                </clipPath>
+              </defs>
+            </svg>
+            <div className="relative w-full max-w-[280px] sm:max-w-[340px] lg:max-w-[400px]">
+              <div
+                className="relative aspect-[4/5] w-full"
+                style={{ clipPath: "url(#heroBlob)" }}
+              >
+                <img
+                  src={site.logo.home}
+                  alt="Pessoas na terapia"
+                  className="h-full w-full object-cover object-center"
+                />
+              </div>
+              {/* Blob decorativo (fora da foto, no canto) */}
+              <div
+                className="absolute -right-2 bottom-2 h-16 w-20 sm:-right-4 sm:bottom-0 sm:h-20 sm:w-28"
+                style={{
+                  background: "linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%)",
+                  borderRadius: "45% 55% 60% 40% / 50% 45% 55% 50%",
+                  opacity: 0.85,
+                }}
+                aria-hidden
               />
             </div>
           </div>

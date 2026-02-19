@@ -94,10 +94,6 @@ export function Commitment() {
             ))}
           </div>
         </div>
-
-        <p className="mt-6 text-sm text-[var(--muted)]">
-          Certificações, Código de Ética e Sigilo e página sobre NR-1 e riscos psicossociais podem ser incluídos em subpáginas quando desejar.
-        </p>
       </div>
     </section>
   );

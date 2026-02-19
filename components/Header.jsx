@@ -37,9 +37,13 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="whitespace-nowrap text-sm font-medium text-[var(--foreground)] transition-colors duration-200 hover:text-[var(--primary)]"
+              className="group relative inline-block pb-1 whitespace-nowrap text-sm font-medium text-[var(--foreground)] transition-colors duration-200 hover:text-[var(--primary)]"
             >
               {link.label}
+              <span
+                className="absolute bottom-0 left-0 h-0.5 w-0 rounded-full bg-gradient-to-r from-[var(--primary)] to-teal-400 transition-[width] duration-300 ease-out group-hover:w-full"
+                aria-hidden
+              />
             </Link>
           ))}
         </nav>
@@ -88,10 +92,14 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium text-[var(--foreground)] transition-colors duration-200 hover:text-[var(--primary)]"
+                className="group relative inline-block pb-1 text-sm font-medium text-[var(--foreground)] transition-colors duration-200 hover:text-[var(--primary)]"
                 onClick={() => setOpen(false)}
               >
                 {link.label}
+                <span
+                  className="absolute bottom-0 left-0 h-0.5 w-0 rounded-full bg-gradient-to-r from-[var(--primary)] to-teal-400 transition-[width] duration-300 ease-out group-hover:w-full"
+                  aria-hidden
+                />
               </Link>
             ))}
             <div className="mt-3 flex flex-col gap-2">

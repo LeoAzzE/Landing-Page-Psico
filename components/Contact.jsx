@@ -13,7 +13,7 @@ export function Contact() {
         <p className="mt-2 text-[var(--muted)]">
           Horário de atendimento: {contact.hours}
         </p>
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-2">
           <div className="rounded-xl border border-[var(--border)] bg-[var(--card)] p-5 transition-all duration-200 hover:border-[var(--primary)]/30 hover:shadow-md">
             <h3 className="text-sm font-semibold uppercase tracking-wide text-[var(--primary)]">
               WhatsApp
@@ -37,12 +37,6 @@ export function Contact() {
             >
               {contact.email}
             </a>
-          </div>
-          <div className="rounded-xl border border-[var(--border)] bg-[var(--card)] p-5 transition-all duration-200 hover:border-[var(--primary)]/30 hover:shadow-md">
-            <h3 className="text-sm font-semibold uppercase tracking-wide text-[var(--primary)]">
-              CNPJ
-            </h3>
-            <p className="mt-1 text-[var(--foreground)]">{contact.cnpj}</p>
           </div>
         </div>
         <div className="mt-10">
