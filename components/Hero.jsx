@@ -25,7 +25,7 @@ export function Hero() {
 
             {/* Título principal + linha com hover */}
             <div className="group inline-block cursor-default">
-              <h1 className="mt-5 text-4xl font-bold leading-tight tracking-tight text-[var(--foreground)] sm:text-5xl lg:text-[3.25rem]">
+              <h1 className="mt-5 text-4xl font-bold leading-tight tracking-tight text-[var(--primary)] sm:text-5xl lg:text-[3.25rem]">
                 {site.name}
               </h1>
               <div className="mt-4 h-1 w-16 rounded-full bg-gradient-to-r from-[var(--primary)] to-teal-400 transition-[width] duration-300 ease-out group-hover:w-full" />

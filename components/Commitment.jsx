@@ -23,7 +23,7 @@ export function Commitment() {
   return (
     <section className="bg-white py-16 sm:py-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <h2 className="text-2xl font-bold text-[var(--foreground)] sm:text-3xl">
+        <h2 className="text-2xl font-bold text-[var(--primary)] sm:text-3xl">
           Nosso compromisso
         </h2>
         <p className="mt-2 max-w-2xl text-[var(--muted)]">
@@ -51,7 +51,7 @@ export function Commitment() {
               >
                 <div className="flex items-center gap-3 text-center sm:text-left">
                   <span className="shrink-0 text-2xl text-[var(--primary)]" aria-hidden>✓</span>
-                  <p className="text-lg font-medium text-[var(--foreground)] sm:text-xl">{item}</p>
+                  <p className="text-lg font-medium text-[var(--primary)] sm:text-xl">{item}</p>
                 </div>
               </div>
             ))}
@@ -61,7 +61,7 @@ export function Commitment() {
           <button
             type="button"
             onClick={() => setIndex((i) => (i === 0 ? commitmentItems.length - 1 : i - 1))}
-            className="absolute left-2 top-1/2 flex h-10 w-10 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-[var(--border)] bg-white/90 text-[var(--foreground)] shadow-sm transition-colors hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:ring-offset-2"
+            className="absolute left-2 top-1/2 flex h-10 w-10 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-[var(--border)] bg-white/90 text-[var(--primary)] shadow-sm transition-colors hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:ring-offset-2"
             aria-label="Compromisso anterior"
           >
             <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
@@ -69,7 +69,7 @@ export function Commitment() {
           <button
             type="button"
             onClick={() => setIndex((i) => (i + 1) % commitmentItems.length)}
-            className="absolute right-2 top-1/2 flex h-10 w-10 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-[var(--border)] bg-white/90 text-[var(--foreground)] shadow-sm transition-colors hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:ring-offset-2"
+            className="absolute right-2 top-1/2 flex h-10 w-10 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-[var(--border)] bg-white/90 text-[var(--primary)] shadow-sm transition-colors hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:ring-offset-2"
             aria-label="Próximo compromisso"
           >
             <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>

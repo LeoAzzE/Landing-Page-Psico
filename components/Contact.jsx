@@ -7,7 +7,7 @@ export function Contact() {
   return (
     <section id="contato" className="scroll-mt-20 bg-slate-50 py-16 sm:py-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <h2 className="text-2xl font-bold text-[var(--foreground)] sm:text-3xl">
+        <h2 className="text-2xl font-bold text-[var(--primary)] sm:text-3xl">
           Contato
         </h2>
         <p className="mt-2 text-[var(--muted)]">
@@ -22,7 +22,7 @@ export function Contact() {
               href={whatsappHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-1 block text-[var(--foreground)] hover:underline"
+              className="mt-1 block text-[var(--primary)] hover:underline"
             >
               {contact.whatsapp}
             </a>
@@ -33,7 +33,7 @@ export function Contact() {
             </h3>
             <a
               href={`mailto:${contact.email}`}
-              className="mt-1 block break-all text-[var(--foreground)] hover:underline"
+              className="mt-1 block break-all text-[var(--primary)] hover:underline"
             >
               {contact.email}
             </a>

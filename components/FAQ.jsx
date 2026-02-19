@@ -9,7 +9,7 @@ export function FAQ() {
   return (
     <section id="faq" className="scroll-mt-20 bg-slate-50 py-16 sm:py-20">
       <div className="mx-auto max-w-3xl px-4 sm:px-6">
-        <h2 className="text-2xl font-bold text-[var(--foreground)] sm:text-3xl">
+        <h2 className="text-2xl font-bold text-[var(--primary)] sm:text-3xl">
           Perguntas frequentes
         </h2>
         <p className="mt-2 text-[var(--muted)]">
@@ -23,7 +23,7 @@ export function FAQ() {
             >
               <button
                 type="button"
-                className="flex w-full items-center justify-between gap-4 px-4 py-3 text-left text-sm font-medium text-[var(--foreground)] transition-colors duration-150 hover:bg-slate-50"
+                className="flex w-full items-center justify-between gap-4 px-4 py-3 text-left text-sm font-medium text-[var(--primary)] transition-colors duration-150 hover:bg-slate-50"
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
                 aria-expanded={openIndex === index}
               >

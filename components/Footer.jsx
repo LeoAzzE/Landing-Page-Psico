@@ -45,7 +45,7 @@ export function Footer() {
               Código de Ética do Psicólogo (CFP)
             </a>
           </p>
-          <p className="mt-4 text-center text-slate-500">Copyright © {new Date().getFullYear()} {site.name}</p>
+          <p className="mt-4 text-center text-slate-500">Copyright © {new Date().getFullYear()} {site.name} | Todos os direitos reservados</p>
         </div>
       </div>
     </footer>

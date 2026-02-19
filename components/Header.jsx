@@ -37,7 +37,7 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="group relative inline-block pb-1 whitespace-nowrap text-sm font-medium text-[var(--foreground)] transition-colors duration-200 hover:text-[var(--primary)]"
+              className="group relative inline-block pb-1 whitespace-nowrap text-sm font-medium text-[var(--primary)] transition-colors duration-200 hover:text-[var(--primary)]"
             >
               {link.label}
               <span
@@ -92,7 +92,7 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="group relative inline-block pb-1 text-sm font-medium text-[var(--foreground)] transition-colors duration-200 hover:text-[var(--primary)]"
+                className="group relative inline-block pb-1 text-sm font-medium text-[var(--primary)] transition-colors duration-200 hover:text-[var(--primary)]"
                 onClick={() => setOpen(false)}
               >
                 {link.label}

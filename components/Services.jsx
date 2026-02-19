@@ -18,7 +18,7 @@ export function Services() {
     <>
       <section id="para-voce" className="scroll-mt-20 bg-white py-16 sm:py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <h2 className="text-2xl font-bold text-[var(--foreground)] sm:text-3xl">
+          <h2 className="text-2xl font-bold text-[var(--primary)] sm:text-3xl">
             Para você
           </h2>
           <p className="mt-2 max-w-2xl text-[var(--muted)]">
@@ -37,7 +37,7 @@ export function Services() {
 
       <section id="para-empresas" className="scroll-mt-20 bg-slate-50 py-16 sm:py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <h2 className="text-2xl font-bold text-[var(--foreground)] sm:text-3xl">
+          <h2 className="text-2xl font-bold text-[var(--primary)] sm:text-3xl">
             Para empresas
           </h2>
           <p className="mt-2 max-w-2xl text-[var(--muted)]">

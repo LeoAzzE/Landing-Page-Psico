@@ -8,7 +8,7 @@ export function Team() {
   return (
     <section id="equipe" className="scroll-mt-20 bg-white py-16 sm:py-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <h2 className="text-2xl font-bold text-[var(--foreground)] sm:text-3xl">
+        <h2 className="text-2xl font-bold text-[var(--primary)] sm:text-3xl">
           Nossa equipe
         </h2>
         <p className="mt-2 max-w-2xl text-[var(--muted)]">
@@ -30,7 +30,7 @@ export function Team() {
                   }}
                 />
               </div>
-              <h3 className="mt-4 text-lg font-semibold text-[var(--foreground)]">
+              <h3 className="mt-4 text-lg font-semibold text-[var(--primary)]">
                 {member.name}
               </h3>
               <p className="text-sm font-medium text-[var(--primary)]">{member.role}</p>
