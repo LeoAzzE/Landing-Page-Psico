@@ -35,6 +35,17 @@ export function Footer() {
         <div className="mt-8 border-t border-slate-600 pt-8 text-sm text-slate-400">
           <p>Horário: {contact.hours}</p>
           <p className="mt-1">CNPJ: {contact.cnpj}</p>
+          <p className="mt-1">
+            <a
+              href="https://site.cfp.org.br/wp-content/uploads/2012/07/codigo-de-etica-psicologia.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-slate-300 hover:text-white underline"
+            >
+              Código de Ética do Psicólogo (CFP)
+            </a>
+          </p>
+          <p className="mt-4 text-center text-slate-500">Copyright © 2026 {site.name}</p>
         </div>
       </div>
     </footer>
