@@ -1,4 +1,5 @@
 import "./globals.css";
+import { CookieBanner } from "@/components/CookieBanner";
 
 export const metadata = {
   title: "Essência Mind – Psicologia Clínica e Organizacional",
@@ -11,6 +12,7 @@ export default function RootLayout({ children }) {
     <html lang="pt-BR">
       <body className="antialiased min-h-screen bg-[var(--background)] text-[var(--foreground)] font-sans">
         {children}
+        <CookieBanner />
       </body>
     </html>
   );

@@ -1,4 +1,5 @@
 import { site, getWhatsAppHref } from "@/lib/site-config";
+import { FadeIn } from "@/components/FadeIn";
 
 export function Hero() {
   const whatsappHref = getWhatsAppHref();
@@ -17,7 +18,7 @@ export function Hero() {
         <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 lg:gap-20">
 
           {/* ── Coluna esquerda: texto ── */}
-          <div className="flex flex-col items-center text-center md:items-start md:text-left">
+          <FadeIn delay={0} className="flex flex-col items-center text-center md:items-start md:text-left">
             {/* Badge */}
             <span className="inline-block rounded-full border border-[var(--primary)]/20 bg-[var(--primary)]/8 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[var(--primary)]">
               Psicologia Clínica e Organizacional
@@ -58,10 +59,10 @@ export function Hero() {
             <p className="mt-3 text-sm text-[var(--muted)]">
               Atendimento online · Segunda a sexta, 8h–18h
             </p>
-          </div>
+          </FadeIn>
 
           {/* ── Coluna direita: imagem com recorte orgânico (blob) ── */}
-          <div className="relative flex items-center justify-center md:justify-end">
+          <FadeIn delay={200} className="relative flex items-center justify-center md:justify-end">
             <svg width="0" height="0" className="absolute" aria-hidden>
               <defs>
                 <clipPath id="heroBlob" clipPathUnits="objectBoundingBox">
@@ -91,7 +92,7 @@ export function Hero() {
                 aria-hidden
               />
             </div>
-          </div>
+          </FadeIn>
 
         </div>
       </div>

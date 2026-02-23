@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { commitmentItems } from "@/lib/site-config";
+import { FadeIn } from "@/components/FadeIn";
 
 const ROTATE_SECONDS = 4;
 
@@ -23,14 +24,17 @@ export function Commitment() {
   return (
     <section className="bg-white py-16 sm:py-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <h2 className="text-2xl font-bold text-[var(--primary)] sm:text-3xl">
-          Nosso compromisso
-        </h2>
-        <p className="mt-2 max-w-2xl text-[var(--muted)]">
-          Ética e sigilo profissional, centralidade da psicoterapia como base do cuidado e atuação alinhada à legislação vigente.
-        </p>
+        <FadeIn>
+          <h2 className="text-2xl font-bold text-[var(--primary)] sm:text-3xl">
+            Nosso compromisso
+          </h2>
+          <p className="mt-2 max-w-2xl text-[var(--muted)]">
+            Ética e sigilo profissional, centralidade da psicoterapia como base do cuidado e atuação alinhada à legislação vigente.
+          </p>
+        </FadeIn>
 
         {/* Área do slider — pausa ao passar o mouse; clique nas setas ou nas bolinhas */}
+        <FadeIn delay={150}>
         <div
           className="relative mt-8 overflow-hidden rounded-xl border border-[var(--border)] bg-slate-50/80 shadow-sm"
           onMouseEnter={() => setPaused(true)}
@@ -94,6 +98,7 @@ export function Commitment() {
             ))}
           </div>
         </div>
+        </FadeIn>
       </div>
     </section>
   );

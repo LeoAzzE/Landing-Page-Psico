@@ -3,6 +3,7 @@ import {
   servicesParaEmpresas,
 } from "@/lib/site-config";
 import { CTAButtons } from "./CTAButtons";
+import { FadeIn } from "@/components/FadeIn";
 
 function ServiceCard({ title, description }) {
   return (
@@ -18,42 +19,52 @@ export function Services() {
     <>
       <section id="para-voce" className="scroll-mt-20 bg-white py-16 sm:py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <h2 className="text-2xl font-bold text-[var(--primary)] sm:text-3xl">
-            Para você
-          </h2>
-          <p className="mt-2 max-w-2xl text-[var(--muted)]">
-            Cuidado psicológico responsável, ético e baseado na realidade da vida.
-          </p>
+          <FadeIn>
+            <h2 className="text-2xl font-bold text-[var(--primary)] sm:text-3xl">
+              Para você
+            </h2>
+            <p className="mt-2 max-w-2xl text-[var(--muted)]">
+              Cuidado psicológico responsável, ético e baseado na realidade da vida.
+            </p>
+          </FadeIn>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-2">
-            {servicesParaVoce.map((s) => (
-              <ServiceCard key={s.title} title={s.title} description={s.description} />
+            {servicesParaVoce.map((s, i) => (
+              <FadeIn key={s.title} delay={100 + i * 80}>
+                <ServiceCard title={s.title} description={s.description} />
+              </FadeIn>
             ))}
           </div>
-          <div className="mt-10">
+          <FadeIn delay={100 + servicesParaVoce.length * 80} className="mt-10">
             <CTAButtons variant="compact" only="individual" />
-          </div>
+          </FadeIn>
         </div>
       </section>
 
       <section id="para-empresas" className="scroll-mt-20 bg-slate-50 py-16 sm:py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <h2 className="text-2xl font-bold text-[var(--primary)] sm:text-3xl">
-            Para empresas
-          </h2>
-          <p className="mt-2 max-w-2xl text-[var(--muted)]">
-            Saúde mental não é discurso. É gestão responsável.
-          </p>
+          <FadeIn>
+            <h2 className="text-2xl font-bold text-[var(--primary)] sm:text-3xl">
+              Para empresas
+            </h2>
+            <p className="mt-2 max-w-2xl text-[var(--muted)]">
+              Saúde mental não é discurso. É gestão responsável.
+            </p>
+          </FadeIn>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-2">
-            {servicesParaEmpresas.map((s) => (
-              <ServiceCard key={s.title} title={s.title} description={s.description} />
+            {servicesParaEmpresas.map((s, i) => (
+              <FadeIn key={s.title} delay={100 + i * 60}>
+                <ServiceCard title={s.title} description={s.description} />
+              </FadeIn>
             ))}
           </div>
-          <p className="mt-6 text-sm italic text-[var(--muted)]">
-            Não prometemos resultados rápidos. O foco é amadurecimento profissional, clareza de papel e responsabilidade nas decisões.
-          </p>
-          <div className="mt-8">
+          <FadeIn delay={100 + servicesParaEmpresas.length * 60}>
+            <p className="mt-6 text-sm italic text-[var(--muted)]">
+              Não prometemos resultados rápidos. O foco é amadurecimento profissional, clareza de papel e responsabilidade nas decisões.
+            </p>
+          </FadeIn>
+          <FadeIn delay={150 + servicesParaEmpresas.length * 60} className="mt-8">
             <CTAButtons variant="compact" only="empresas" />
-          </div>
+          </FadeIn>
         </div>
       </section>
     </>
