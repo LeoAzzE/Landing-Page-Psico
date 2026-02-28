@@ -1,10 +1,11 @@
-import Link from "next/link";
-import { site, contact } from "@/lib/site-config";
+"use client";
 
-export const metadata = {
-  title: `Política de Privacidade – ${site.name ?? "Essência Mind"}`,
-  description: "Saiba como a Essência Mind coleta, usa e protege seus dados pessoais, em conformidade com a Lei Geral de Proteção de Dados (LGPD – Lei nº 13.709/2018).",
-};
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { ArrowLeft, Shield, Mail, Phone, Clock } from "lucide-react";
+import { site, contact } from "@/lib/site-config";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 
 const sections = [
   {
@@ -78,94 +79,129 @@ const sections = [
 export default function PrivacyPage() {
   return (
     <div className="min-h-screen bg-[var(--background)]">
-      {/* Cabeçalho da página */}
-      <div className="border-b border-[var(--border)] bg-white">
-        <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--primary)] hover:underline"
+      {/* Header */}
+      <div className="border-b border-[var(--border)] bg-gradient-to-br from-white to-blue-50/50">
+        <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
           >
-            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-            Voltar ao site
-          </Link>
-          <h1 className="mt-4 text-3xl font-bold text-[var(--primary)]">
-            Política de Privacidade
-          </h1>
-          <p className="mt-2 text-sm text-[var(--muted)]">
-            Última atualização:{" "}
-            {new Date().toLocaleDateString("pt-BR", {
-              day: "2-digit",
-              month: "long",
-              year: "numeric",
-            })}
-          </p>
-          <p className="mt-4 text-[var(--muted)]">
-            A <strong className="text-[var(--foreground)]">{site.name ?? "Essência Mind"}</strong> respeita
-            e protege a privacidade de seus visitantes e pacientes. Este documento explica como
-            coletamos, usamos e protegemos suas informações pessoais, em conformidade com a{" "}
-            <strong className="text-[var(--foreground)]">Lei Geral de Proteção de Dados (LGPD – Lei nº 13.709/2018)</strong>.
-          </p>
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2 text-sm font-medium text-[var(--primary)] transition-colors hover:text-[var(--accent)]"
+            >
+              <ArrowLeft className="h-4 w-4" />
+              Voltar ao site
+            </Link>
+            
+            <div className="mt-6 flex items-start gap-4">
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[var(--primary)]/10">
+                <Shield className="h-7 w-7 text-[var(--primary)]" />
+              </div>
+              <div>
+                <h1 className="text-3xl font-bold text-[var(--primary)] sm:text-4xl">
+                  Política de Privacidade
+                </h1>
+                <Badge variant="outline" className="mt-3">
+                  Última atualização:{" "}
+                  {new Date().toLocaleDateString("pt-BR", {
+                    day: "2-digit",
+                    month: "long",
+                    year: "numeric",
+                  })}
+                </Badge>
+              </div>
+            </div>
+            
+            <p className="mt-6 text-lg text-slate-600">
+              A <strong className="text-[var(--primary)]">{site.name ?? "Essência Mind"}</strong> respeita
+              e protege a privacidade de seus visitantes e pacientes. Este documento explica como
+              coletamos, usamos e protegemos suas informações pessoais, em conformidade com a{" "}
+              <strong className="text-[var(--primary)]">Lei Geral de Proteção de Dados (LGPD – Lei nº 13.709/2018)</strong>.
+            </p>
+          </motion.div>
         </div>
       </div>
 
-      {/* Conteúdo */}
-      <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
-        <div className="space-y-10">
-          {sections.map((section) => (
-            <section key={section.title}>
-              <h2 className="text-lg font-semibold text-[var(--primary)]">
+      {/* Content */}
+      <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6">
+        <div className="space-y-8">
+          {sections.map((section, index) => (
+            <motion.section
+              key={section.title}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: index * 0.05 }}
+              className="rounded-2xl border border-[var(--border)] bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
+            >
+              <h2 className="text-xl font-semibold text-[var(--primary)]">
                 {section.title}
               </h2>
-              <p className="mt-2 text-[var(--muted)] leading-relaxed">
+              <p className="mt-3 leading-relaxed text-slate-600">
                 {section.content}
               </p>
               {section.list && (
-                <ul className="mt-3 space-y-1.5 pl-4">
+                <ul className="mt-4 space-y-2">
                   {section.list.map((item, i) => (
-                    <li key={i} className="flex gap-2 text-[var(--muted)]">
-                      <span className="mt-1 shrink-0 text-[var(--accent)]" aria-hidden>•</span>
+                    <li key={i} className="flex gap-3 text-slate-600">
+                      <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-[var(--accent)]" />
                       <span className="leading-relaxed">{item}</span>
                     </li>
                   ))}
                 </ul>
               )}
-              {/* Bloco especial de contato na seção 9 */}
+              
               {section.title.startsWith("9.") && (
-                <div className="mt-4 rounded-xl border border-[var(--border)] bg-white p-5 text-sm text-[var(--muted)]">
-                  <p>
-                    <span className="font-medium text-[var(--foreground)]">E-mail: </span>
-                    <a
-                      href={`mailto:${contact.email}`}
-                      className="text-[var(--primary)] hover:underline"
-                    >
-                      {contact.email}
-                    </a>
-                  </p>
-                  <p className="mt-1">
-                    <span className="font-medium text-[var(--foreground)]">WhatsApp: </span>
-                    {contact.whatsapp}
-                  </p>
-                  <p className="mt-1">
-                    <span className="font-medium text-[var(--foreground)]">Horário de atendimento: </span>
-                    {contact.hours}
-                  </p>
+                <div className="mt-6 rounded-xl bg-slate-50 p-5">
+                  <div className="grid gap-4 sm:grid-cols-3">
+                    <div className="flex items-center gap-3">
+                      <Mail className="h-5 w-5 text-[var(--primary)]" />
+                      <div>
+                        <p className="text-xs text-slate-500">E-mail</p>
+                        <a
+                          href={`mailto:${contact.email}`}
+                          className="text-sm font-medium text-[var(--primary)] hover:underline"
+                        >
+                          {contact.email}
+                        </a>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <Phone className="h-5 w-5 text-[var(--primary)]" />
+                      <div>
+                        <p className="text-xs text-slate-500">WhatsApp</p>
+                        <p className="text-sm font-medium text-slate-700">{contact.whatsapp}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <Clock className="h-5 w-5 text-[var(--primary)]" />
+                      <div>
+                        <p className="text-xs text-slate-500">Horário</p>
+                        <p className="text-sm font-medium text-slate-700">{contact.hours}</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               )}
-            </section>
+            </motion.section>
           ))}
         </div>
 
-        {/* Rodapé da página */}
-        <div className="mt-12 border-t border-[var(--border)] pt-8 text-center">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 rounded-xl bg-[var(--primary)] px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:bg-[var(--primary-light)] hover:shadow-md"
-          >
-            Voltar ao site
-          </Link>
-        </div>
+        {/* Footer */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="mt-12 text-center"
+        >
+          <Button asChild size="lg" variant="gradient">
+            <Link href="/">
+              <ArrowLeft className="h-4 w-4" />
+              Voltar ao site
+            </Link>
+          </Button>
+        </motion.div>
       </div>
     </div>
   );
