@@ -45,7 +45,8 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --font-sans: "Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  --font-sans: "Open Sans", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  --font-serif: "Lora", Georgia, "Times New Roman", serif;
 }
 
 html {
@@ -56,6 +57,19 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+/* Tipografia - Lora para títulos, Open Sans para corpo */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
 }
 
 /* Scrollbar customizada */

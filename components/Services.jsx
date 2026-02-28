@@ -172,7 +172,7 @@ export function Services() {
       {/* Seção Para Empresas */}
       <div id="para-empresas" className="scroll-mt-20 bg-slate-50 py-20 sm:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
+          <div className="text-center flex flex-col items-center justify-center">
             <SectionHeader
               badge="Soluções Corporativas"
               title="Para empresas"
