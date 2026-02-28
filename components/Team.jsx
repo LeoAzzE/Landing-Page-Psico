@@ -51,18 +51,18 @@ function TeamCard({ member, index }) {
         </div>
 
         {/* Conteúdo do card */}
-        <CardContent className="p-6">
-          <div className="space-y-2">
-            <h3 className="text-xl font-semibold text-[var(--primary)] transition-colors group-hover:text-[var(--accent)]">
+        <CardContent className="p-4 sm:p-6">
+          <div className="space-y-1 sm:space-y-2">
+            <h3 className="text-lg sm:text-xl font-semibold text-[var(--primary)] transition-colors group-hover:text-[var(--accent)]">
               {member.name}
             </h3>
-            <p className="text-sm font-medium text-slate-600">
+            <p className="text-xs sm:text-sm font-medium text-slate-600">
               {member.role}
             </p>
           </div>
 
           {/* Linha decorativa */}
-          <div className="mt-4 h-1 w-12 rounded-full bg-gradient-to-r from-[var(--primary)] to-[var(--accent)] transition-all duration-300 group-hover:w-full" />
+          <div className="mt-3 sm:mt-4 h-1 w-10 sm:w-12 rounded-full bg-gradient-to-r from-[var(--primary)] to-[var(--accent)] transition-all duration-300 group-hover:w-full" />
         </CardContent>
       </Card>
     </motion.div>
@@ -71,8 +71,8 @@ function TeamCard({ member, index }) {
 
 export function Team() {
   return (
-    <section id="equipe" className="scroll-mt-20 bg-white py-20 sm:py-28">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="equipe" className="scroll-mt-20 bg-white py-12 sm:py-20 md:py-28 overflow-x-hidden">
+      <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -81,19 +81,19 @@ export function Team() {
           transition={{ duration: 0.5 }}
           className="text-center"
         >
-          <Badge variant="outline" className="mb-4">
+          <Badge variant="outline" className="mb-3 sm:mb-4 text-xs sm:text-sm">
             Conheça os profissionais
           </Badge>
-          <h2 className="text-3xl font-bold text-[var(--primary)] sm:text-4xl">
+          <h2 className="text-2xl font-bold text-[var(--primary)] sm:text-3xl md:text-4xl">
             Nossa equipe
           </h2>
-          <p className="mx-auto mt-4 max-w-3xl text-lg text-slate-500">
+          <p className="mx-auto mt-3 sm:mt-4 max-w-3xl text-base sm:text-lg text-slate-500 px-2">
             A equipe reúne formação técnica, experiência prática e compromisso ético. A psicoterapia é conduzida exclusivamente por profissionais habilitados e registrados no Conselho Regional de Psicologia.
           </p>
         </motion.div>
 
         {/* Grid de membros */}
-        <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 sm:mt-16 grid gap-6 sm:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {team.map((member, index) => (
             <TeamCard key={member.name} member={member} index={index} />
           ))}
@@ -105,10 +105,10 @@ export function Team() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-16 text-center"
+          className="mt-10 sm:mt-16 text-center"
         >
-          <div className="mx-auto max-w-2xl rounded-2xl bg-gradient-to-r from-[var(--primary)]/5 to-[var(--accent)]/5 p-8">
-            <p className="text-slate-600">
+          <div className="mx-auto max-w-2xl rounded-xl sm:rounded-2xl bg-gradient-to-r from-[var(--primary)]/5 to-[var(--accent)]/5 p-5 sm:p-8">
+            <p className="text-sm sm:text-base text-slate-600">
               As frentes organizacionais contam com suporte técnico da Administração, garantindo uma abordagem multidisciplinar e completa.
             </p>
           </div>

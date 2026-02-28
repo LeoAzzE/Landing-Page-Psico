@@ -68,13 +68,13 @@ function SectionHeader({ badge, title, description, align = "left" }) {
       transition={{ duration: 0.5 }}
       className={align === "center" ? "text-center" : ""}
     >
-      <Badge variant="outline" className="mb-4">
+      <Badge variant="outline" className="mb-3 sm:mb-4 text-xs sm:text-sm">
         {badge}
       </Badge>
-      <h2 className="text-3xl font-bold text-[var(--primary)] sm:text-4xl">
+      <h2 className="text-2xl font-bold text-[var(--primary)] sm:text-3xl md:text-4xl">
         {title}
       </h2>
-      <p className="mt-4 max-w-2xl text-lg text-slate-500">
+      <p className="mt-3 sm:mt-4 max-w-2xl text-base sm:text-lg text-slate-500">
         {description}
       </p>
     </motion.div>
@@ -87,12 +87,12 @@ export function Services() {
   return (
     <section className="relative">
       {/* Seção Para Você */}
-      <div id="para-voce" className="scroll-mt-20 bg-white py-20 sm:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+      <div id="para-voce" className="scroll-mt-20 bg-white py-12 sm:py-20 md:py-28 overflow-x-hidden">
+        <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8">
+          <div className="grid gap-8 sm:gap-12 lg:grid-cols-12 lg:gap-16 lg:items-stretch">
             {/* Header da seção */}
             <div className="lg:col-span-4">
-              <div className="sticky top-28">
+              <div className="h-full flex flex-col">
                 <SectionHeader
                   badge="Atendimento Individual"
                   title="Para você"
@@ -104,9 +104,9 @@ export function Services() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.3 }}
-                  className="mt-8"
+                  className="mt-6 sm:mt-8"
                 >
-                  <Button asChild size="lg" variant="gradient" className="group">
+                  <Button asChild size="default" variant="gradient" className="group text-sm sm:text-base">
                     <a href={whatsappHref} target="_blank" rel="noopener noreferrer">
                       {cta.individual.labelAlt}
                       <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -114,21 +114,21 @@ export function Services() {
                   </Button>
                 </motion.div>
 
-                {/* Stats */}
+                {/* Stats - empurrado para o final */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.4 }}
-                  className="mt-10 grid grid-cols-2 gap-6"
+                  className="mt-auto pt-6 sm:pt-10 grid grid-cols-2 gap-3 sm:gap-6"
                 >
-                  <div className="rounded-2xl bg-[var(--primary)]/5 p-4">
-                    <p className="text-3xl font-bold text-[var(--primary)]">100%</p>
-                    <p className="mt-1 text-sm text-slate-500">Online e seguro</p>
+                  <div className="rounded-xl sm:rounded-2xl bg-[var(--primary)]/5 p-3 sm:p-4">
+                    <p className="text-2xl sm:text-3xl font-bold text-[var(--primary)]">100%</p>
+                    <p className="mt-1 text-xs sm:text-sm text-slate-500">Online e seguro</p>
                   </div>
-                  <div className="rounded-2xl bg-[var(--accent)]/5 p-4">
-                    <p className="text-3xl font-bold text-[var(--accent)]">+12</p>
-                    <p className="mt-1 text-sm text-slate-500">Anos de idade atendidos</p>
+                  <div className="rounded-xl sm:rounded-2xl bg-[var(--accent)]/5 p-3 sm:p-4">
+                    <p className="text-2xl sm:text-3xl font-bold text-[var(--accent)]">12+</p>
+                    <p className="mt-1 text-xs sm:text-sm text-slate-500">Anos de idade atendidos</p>
                   </div>
                 </motion.div>
               </div>
@@ -136,7 +136,7 @@ export function Services() {
 
             {/* Cards de serviços */}
             <div className="lg:col-span-8">
-              <div className="grid gap-6 sm:grid-cols-2">
+              <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2">
                 {servicesParaVoce.map((service, index) => (
                   <ServiceCard
                     key={service.title}
@@ -170,36 +170,53 @@ export function Services() {
       </div>
 
       {/* Seção Para Empresas */}
-      <div id="para-empresas" className="scroll-mt-20 bg-slate-50 py-20 sm:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center flex flex-col items-center justify-center">
+      <div id="para-empresas" className="scroll-mt-20 bg-slate-50 py-12 sm:py-20 md:py-28 overflow-x-hidden">
+        <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8">
+          {/* Header centralizado */}
+          <div className="text-center flex flex-col items-center">
             <SectionHeader
               badge="Soluções Corporativas"
               title="Para empresas"
               description="Saúde mental não é discurso. É gestão responsável. Desenvolvemos programas personalizados para fortalecer sua organização."
               align="center"
             />
+            
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="mt-6 sm:mt-8"
+            >
+              <Button asChild size="default" variant="gradient" className="group text-sm sm:text-base">
+                <a href={whatsappHref} target="_blank" rel="noopener noreferrer">
+                  <Building2 className="h-4 w-4" />
+                  Falar sobre empresas
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </a>
+              </Button>
+            </motion.div>
           </div>
 
-          {/* Tabs para organizar os serviços */}
+          {/* Tabs e Cards */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-12"
+            className="mt-10 sm:mt-14"
           >
             <Tabs defaultValue="all" className="w-full">
-              <div className="flex justify-center">
-                <TabsList className="mb-8">
-                  <TabsTrigger className="cursor-pointer" value="all">Todos os serviços</TabsTrigger>
-                  <TabsTrigger className="cursor-pointer" value="saude">Saúde Mental</TabsTrigger>
-                  <TabsTrigger className="cursor-pointer" value="desenvolvimento">Desenvolvimento</TabsTrigger>
+              <div className="flex justify-center mb-6 sm:mb-8">
+                <TabsList>
+                  <TabsTrigger className="cursor-pointer text-xs sm:text-sm" value="all">Todos</TabsTrigger>
+                  <TabsTrigger className="cursor-pointer text-xs sm:text-sm" value="saude">Saúde Mental</TabsTrigger>
+                  <TabsTrigger className="cursor-pointer text-xs sm:text-sm" value="desenvolvimento">Desenvolvimento</TabsTrigger>
                 </TabsList>
               </div>
 
               <TabsContent value="all">
-                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
                   {servicesParaEmpresas.map((service, index) => (
                     <ServiceCard
                       key={service.title}
@@ -214,7 +231,7 @@ export function Services() {
               </TabsContent>
 
               <TabsContent value="saude">
-                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
                   {servicesParaEmpresas.slice(0, 5).map((service, index) => (
                     <ServiceCard
                       key={service.title}
@@ -229,7 +246,7 @@ export function Services() {
               </TabsContent>
 
               <TabsContent value="desenvolvimento">
-                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
                   {servicesParaEmpresas.slice(5).map((service, index) => (
                     <ServiceCard
                       key={service.title}
@@ -245,27 +262,16 @@ export function Services() {
             </Tabs>
           </motion.div>
 
-          {/* Nota e CTA */}
-          <motion.div
+          {/* Nota */}
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="mt-12 text-center"
+            className="mt-10 sm:mt-12 text-center text-xs sm:text-sm italic text-slate-500 max-w-2xl mx-auto"
           >
-            <p className="mx-auto max-w-2xl text-sm italic text-slate-500">
-              Não prometemos resultados rápidos. O foco é amadurecimento profissional, clareza de papel e responsabilidade nas decisões.
-            </p>
-            <div className="mt-8">
-              <Button asChild size="lg" variant="gradient" className="group">
-                <a href={whatsappHref} target="_blank" rel="noopener noreferrer">
-                  <Building2 className="h-5 w-5" />
-                  {cta.empresas.labelAlt}
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </a>
-              </Button>
-            </div>
-          </motion.div>
+            Não prometemos resultados rápidos. O foco é amadurecimento profissional, clareza de papel e responsabilidade nas decisões.
+          </motion.p>
         </div>
       </div>
     </section>

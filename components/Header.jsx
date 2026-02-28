@@ -39,26 +39,28 @@ export function Header() {
         scrolled && "shadow-md border-b border-[var(--border)]"
       )}
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div className="flex h-24 items-center justify-between gap-4">
-          {/* Logo */}
+      <div className="px-3 sm:px-6 lg:px-12 xl:px-16">
+        <div className="flex h-16 sm:h-20 min-[1200px]:h-24 items-center justify-between gap-2 sm:gap-4">
+          {/* Logo - responsivo para mobile */}
           <Link
             href="#"
-            className="flex shrink-0 items-center group"
+            className="flex shrink items-center group min-w-0"
             aria-label={`${site.name} - início`}
           >
-            <div className="overflow-hidden" style={{ width: "340px", height: "72px" }}>
+            <div className="overflow-hidden w-[180px] h-[48px] sm:w-[260px] sm:h-[58px] min-[1200px]:w-[340px] min-[1200px]:h-[72px]">
               <img
                 src={site.logo.main}
                 alt={site.name}
-                className="max-w-none object-cover object-center transition-transform duration-300 group-hover:scale-105"
-                style={{ width: "340px", height: "240px", marginTop: "-80px", marginLeft: "-22px" }}
+                className="max-w-none object-cover object-center transition-transform duration-300 group-hover:scale-105
+                  w-[180px] h-[130px] -mt-[38px] -ml-[8px]
+                  sm:w-[260px] sm:h-[185px] sm:-mt-[58px] sm:-ml-[12px]
+                  min-[1200px]:w-[340px] min-[1200px]:h-[240px] min-[1200px]:-mt-[80px] min-[1200px]:-ml-[22px]"
               />
             </div>
           </Link>
 
-          {/* Navigation - center */}
-          <nav className="hidden items-center gap-1 lg:flex" aria-label="Principal">
+          {/* Navigation - center (aparece apenas em telas >= 1200px) */}
+          <nav className="hidden items-center gap-1 min-[1200px]:flex" aria-label="Principal">
             {navLinks.map((link, index) => (
               <motion.div
                 key={link.href}
@@ -77,8 +79,8 @@ export function Header() {
             ))}
           </nav>
 
-          {/* CTA Buttons - right */}
-          <div className="hidden items-center gap-2 lg:flex">
+          {/* CTA Buttons - right (aparece apenas em telas >= 1200px) */}
+          <div className="hidden items-center gap-2 min-[1200px]:flex">
             <motion.a
               href={whatsappHref}
               target="_blank"
@@ -107,10 +109,10 @@ export function Header() {
             </motion.a>
           </div>
 
-          {/* Mobile menu button */}
+          {/* Mobile menu button (aparece em telas < 1200px) */}
           <button
             type="button"
-            className="flex h-10 w-10 items-center justify-center rounded-lg border border-[var(--border)] bg-white transition-all duration-200 hover:border-[var(--primary)]/30 hover:bg-[var(--primary)]/5 lg:hidden"
+            className="flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-lg border border-[var(--border)] bg-white transition-all duration-200 hover:border-[var(--primary)]/30 hover:bg-[var(--primary)]/5 min-[1200px]:hidden"
             onClick={() => setOpen(!open)}
             aria-expanded={open}
             aria-label="Abrir menu"
@@ -150,7 +152,7 @@ export function Header() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="border-t border-[var(--border)] bg-white lg:hidden overflow-hidden"
+            className="border-t border-[var(--border)] bg-white min-[1200px]:hidden overflow-hidden"
           >
             <nav className="mx-auto max-w-7xl px-4 py-4 sm:px-6" aria-label="Principal (mobile)">
               <div className="flex flex-col gap-1">
