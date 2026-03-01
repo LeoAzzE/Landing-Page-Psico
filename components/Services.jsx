@@ -87,7 +87,7 @@ export function Services() {
   return (
     <section className="relative">
       {/* Seção Para Você */}
-      <div id="para-voce" className="scroll-mt-20 bg-white py-12 sm:py-20 md:py-28 overflow-x-hidden">
+      <div id="para-voce" className="scroll-mt-20 bg-white py-12 sm:py-16 md:py-20 overflow-x-hidden">
         <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8">
           <div className="grid gap-8 sm:gap-12 lg:grid-cols-12 lg:gap-16 lg:items-stretch">
             {/* Header da seção */}
@@ -153,24 +153,8 @@ export function Services() {
         </div>
       </div>
 
-      {/* Divisor decorativo */}
-      <div className="relative h-24 bg-gradient-to-b from-white to-slate-50">
-        <svg
-          viewBox="0 0 1440 100"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="absolute bottom-0 w-full"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M0 100L48 91.7C96 83.3 192 66.7 288 58.3C384 50 480 50 576 54.2C672 58.3 768 66.7 864 70.8C960 75 1056 75 1152 70.8C1248 66.7 1344 58.3 1392 54.2L1440 50V100H1392C1344 100 1248 100 1152 100C1056 100 960 100 864 100C768 100 672 100 576 100C480 100 384 100 288 100C192 100 96 100 48 100H0Z"
-            fill="#f8fafc"
-          />
-        </svg>
-      </div>
-
       {/* Seção Para Empresas */}
-      <div id="para-empresas" className="scroll-mt-20 bg-slate-50 py-12 sm:py-20 md:py-28 overflow-x-hidden">
+      <div id="para-empresas" className="scroll-mt-20 bg-slate-50 py-12 sm:py-16 md:py-20 overflow-x-hidden">
         <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8">
           {/* Header centralizado */}
           <div className="text-center flex flex-col items-center">
