@@ -76,7 +76,7 @@ export function Hero() {
               transition={{ duration: 0.6, delay: 0.15 }}
               className="mt-5 max-w-xl text-base leading-relaxed text-slate-600 sm:text-lg"
             >
-              Psicoterapia online com profissionais registrados no CRP. 
+              Psicoterapia online com profissionais registrados no CRP e CRA. 
               Atendimento ético, sigiloso e comprometido com sua história e realidade.
             </motion.p>
 

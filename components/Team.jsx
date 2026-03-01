@@ -1,7 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Linkedin, Mail, Award, GraduationCap } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Award, ChevronDown } from "lucide-react";
 import { team } from "@/lib/site-config";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -9,6 +10,13 @@ import { Badge } from "@/components/ui/badge";
 const placeholderImage = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect fill='%23e2e8f0' width='200' height='200'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%2394a3b8' font-family='sans-serif' font-size='14'%3EFoto%3C/text%3E%3C/svg%3E";
 
 function TeamCard({ member, index }) {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const truncateBio = (text, maxLength = 120) => {
+    if (text.length <= maxLength) return text;
+    return text.substring(0, maxLength).trim() + "...";
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
@@ -22,47 +30,69 @@ function TeamCard({ member, index }) {
           <img
             src={member.image.startsWith("http") || member.image.startsWith("/") ? member.image : placeholderImage}
             alt={member.name}
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
             onError={(e) => {
               e.currentTarget.src = placeholderImage;
             }}
           />
           {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[var(--primary)]/90 via-[var(--primary)]/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-          
-          {/* Info que aparece no hover */}
-          <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-full transition-transform duration-300 group-hover:translate-y-0">
-            <p className="text-sm text-white/90 line-clamp-3">
-              {member.bio}
-            </p>
-            <div className="mt-3 flex items-center gap-2 text-xs text-white/70">
-              <GraduationCap className="h-4 w-4" />
-              <span className="line-clamp-1">{member.formation}</span>
-            </div>
-          </div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[var(--primary)]/60 via-transparent to-transparent" />
 
           {/* Badge de registro */}
           <div className="absolute right-3 top-3">
-            <Badge variant="default" className="bg-white/90 text-[var(--primary)] backdrop-blur-sm">
+            <Badge variant="default" className="bg-white/90 text-[var(--primary)] backdrop-blur-sm text-xs">
               <Award className="mr-1 h-3 w-3" />
               {member.register}
             </Badge>
           </div>
-        </div>
 
-        {/* Conteúdo do card */}
-        <CardContent className="p-4 sm:p-6">
-          <div className="space-y-1 sm:space-y-2">
-            <h3 className="text-lg sm:text-xl font-semibold text-[var(--primary)] transition-colors group-hover:text-[var(--accent)]">
+          {/* Nome e cargo sobre a imagem */}
+          <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5">
+            <h3 className="text-xl sm:text-2xl font-bold text-white drop-shadow-lg">
               {member.name}
             </h3>
-            <p className="text-xs sm:text-sm font-medium text-slate-600">
+            <p className="text-sm sm:text-base font-medium text-white/90 drop-shadow-md">
               {member.role}
             </p>
           </div>
+        </div>
 
+        {/* Conteúdo do card - Biografia */}
+        <CardContent className="p-4 sm:p-5">
           {/* Linha decorativa */}
-          <div className="mt-3 sm:mt-4 h-1 w-10 sm:w-12 rounded-full bg-gradient-to-r from-[var(--primary)] to-[var(--accent)] transition-all duration-300 group-hover:w-full" />
+          <div className="mb-4 h-1 w-12 rounded-full bg-gradient-to-r from-[var(--primary)] to-[var(--accent-green)]" />
+          
+          {/* Biografia com expansão */}
+          <div className="relative">
+            <AnimatePresence mode="wait">
+              <motion.p
+                key={isExpanded ? "expanded" : "collapsed"}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="text-sm leading-relaxed text-slate-600"
+              >
+                {isExpanded ? member.bio : truncateBio(member.bio)}
+              </motion.p>
+            </AnimatePresence>
+          </div>
+
+          {/* Botão expandir/recolher */}
+          {member.bio.length > 120 && (
+            <button
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="mt-3 flex items-center gap-1 text-sm font-medium text-[var(--primary)] transition-colors hover:text-[var(--accent)] cursor-pointer"
+            >
+              {isExpanded ? "Ver menos" : "Ver mais"}
+              <motion.span
+                animate={{ rotate: isExpanded ? 180 : 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <ChevronDown className="h-4 w-4" />
+              </motion.span>
+            </button>
+          )}
         </CardContent>
       </Card>
     </motion.div>

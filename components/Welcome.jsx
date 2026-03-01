@@ -64,22 +64,15 @@ export function Welcome() {
             {/* Texto principal */}
             <div className="mt-6 space-y-4 text-base leading-relaxed text-slate-600 sm:text-lg">
               <p>
-                Aqui na <strong className="text-slate-700">{site.name}</strong>, entendemos que cada pessoa 
-                carrega uma história única, com desafios, conquistas e questões que merecem 
-                atenção cuidadosa. Por isso, nosso trabalho é pautado no <strong className="text-slate-700">respeito 
-                à sua individualidade</strong> e no compromisso com um atendimento ético e humanizado.
+                A <strong className="text-slate-700">{site.name}</strong> nasce da união entre 
+                <strong className="text-slate-700"> experiência, ciência e propósito</strong>. Mais do que um 
+                projeto profissional, é um compromisso familiar com o cuidado, o desenvolvimento 
+                humano e a responsabilidade nas relações de trabalho e na vida.
               </p>
               <p>
-                Atuamos tanto no <strong className="text-slate-700">cuidado individual</strong> — com psicoterapia 
-                para adolescentes, adultos e casais — quanto no <strong className="text-slate-700">ambiente 
-                corporativo</strong>, desenvolvendo programas de saúde mental, treinamentos e 
-                consultorias que fortalecem pessoas e organizações.
-              </p>
-              <p>
-                Nosso objetivo é oferecer um espaço onde você possa se sentir acolhido 
-                para falar sobre o que importa, sem julgamentos. Se você está buscando 
-                clareza, equilíbrio ou simplesmente alguém para ouvir, 
-                <strong className="text-[var(--primary)]"> estamos prontos para te acompanhar nessa jornada</strong>.
+                Aqui, <strong className="text-slate-700">técnica e humanidade caminham juntas</strong>. Porque 
+                acreditamos que saúde mental não é tendência — <strong className="text-[var(--primary)]">é compromisso</strong>. 
+                E que relações mais conscientes constroem vidas e organizações mais saudáveis.
               </p>
             </div>
 
