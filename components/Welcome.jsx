@@ -55,7 +55,7 @@ export function Welcome() {
             
             {/* Subtítulo */}
             <p className="mt-3 text-lg font-medium text-[var(--primary)] sm:text-xl">
-              Um espaço seguro para você se expressar
+              Compromisso com o contexto, a história e a realidade de cada pessoa e organização.
             </p>
 
             {/* Linha decorativa */}

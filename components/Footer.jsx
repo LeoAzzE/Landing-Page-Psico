@@ -25,6 +25,11 @@ const legalLinks = [
     label: "Política de Privacidade",
     external: false,
   },
+  {
+    href: "/nr1-riscos-psicossociais",
+    label: "NR-1 e Riscos Psicossociais",
+    external: false,
+  },
 ];
 
 export function Footer() {

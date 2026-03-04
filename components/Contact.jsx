@@ -1,11 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Clock, MessageSquare } from "lucide-react";
+import { Clock, MessageSquare, Mail } from "lucide-react";
 import { contact, getWhatsAppHref } from "@/lib/site-config";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ContactForm } from "@/components/ContactForm";
 
 export function Contact() {
   const whatsappHref = getWhatsAppHref();
@@ -32,56 +31,77 @@ export function Contact() {
           </p>
         </motion.div>
 
-        <div className="grid gap-8 sm:gap-12 lg:grid-cols-2 lg:gap-16">
-          {/* Coluna esquerda: Formulário */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+        <div className="mx-auto max-w-2xl flex flex-col gap-4 sm:gap-5">
+          {/* Card WhatsApp */}
+          <motion.a
+            href={whatsappHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group block"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <ContactForm />
-          </motion.div>
-
-          {/* Coluna direita: Info */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="flex flex-col gap-4 sm:gap-5"
-          >
-            {/* Card WhatsApp */}
-            <a
-              href={whatsappHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group block"
-            >
-              <Card className="overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-green-300">
-                <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-to-br from-green-500 to-emerald-500" />
-                  <CardContent className="relative p-5 sm:p-6 text-white">
-                    <div className="flex items-start gap-4">
-                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white/20 backdrop-blur-sm">
-                        <MessageSquare className="h-6 w-6" />
-                      </div>
-                      <div>
-                        <h3 className="text-lg font-bold">Prefere WhatsApp?</h3>
-                        <p className="mt-1 text-white/90 text-sm">
-                          Clique aqui para iniciar uma conversa direta. Respondemos em até 24h úteis.
-                        </p>
-                        <p className="mt-2 text-sm font-medium text-white/80">
-                          {contact.whatsapp}
-                        </p>
-                      </div>
+            <Card className="overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-green-300">
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-green-500 to-emerald-500" />
+                <CardContent className="relative p-5 sm:p-6 text-white">
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white/20 backdrop-blur-sm">
+                      <MessageSquare className="h-6 w-6" />
                     </div>
-                  </CardContent>
-                </div>
-              </Card>
-            </a>
+                    <div>
+                      <h3 className="text-lg font-bold">Prefere WhatsApp?</h3>
+                      <p className="mt-1 text-white/90 text-sm">
+                        Clique aqui para iniciar uma conversa direta. Respondemos em até 24h úteis.
+                      </p>
+                      <p className="mt-2 text-sm font-medium text-white/80">
+                        {contact.whatsapp}
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </div>
+            </Card>
+          </motion.a>
 
-            {/* Horário de atendimento */}
+          {/* Card E-mail institucional */}
+          <motion.a
+            href={contact.email && !contact.email.includes("inserir") ? `mailto:${contact.email}` : undefined}
+            className={contact.email && !contact.email.includes("inserir") ? "block" : "block cursor-default"}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            <Card className="overflow-hidden transition-all duration-300 hover:shadow-md border-[var(--border)]">
+              <CardContent className="p-5 sm:p-6">
+                <div className="flex items-start gap-4">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[var(--primary)]/10">
+                    <Mail className="h-6 w-6 text-[var(--primary)]" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-slate-800">E-mail institucional</h3>
+                    <p className="mt-1 text-slate-600 text-sm">
+                      Envie sua mensagem por e-mail. Retornaremos em até 24h úteis.
+                    </p>
+                    <p className="mt-2 text-sm font-medium text-[var(--primary)] break-all">
+                      {contact.email}
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.a>
+
+          {/* Horário de atendimento */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+          >
             <Card>
               <CardContent className="p-5 sm:p-6">
                 <div className="flex items-start gap-4">
@@ -98,8 +118,15 @@ export function Contact() {
                 </div>
               </CardContent>
             </Card>
+          </motion.div>
 
-            {/* Info adicional */}
+          {/* Info adicional */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
             <Card className="bg-gradient-to-br from-[var(--primary)]/5 to-[var(--accent)]/5 border-0">
               <CardContent className="p-5 sm:p-6">
                 <h3 className="font-semibold text-slate-700 text-base">
@@ -125,12 +152,12 @@ export function Contact() {
                 </ul>
               </CardContent>
             </Card>
-
-            {/* CNPJ */}
-            <p className="text-center text-xs text-slate-400">
-              CNPJ: {contact.cnpj}
-            </p>
           </motion.div>
+
+          {/* CNPJ */}
+          <p className="text-center text-xs text-slate-400">
+            CNPJ: {contact.cnpj}
+          </p>
         </div>
       </div>
     </section>
