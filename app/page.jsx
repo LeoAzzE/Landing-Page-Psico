@@ -18,8 +18,8 @@ export default function Home() {
         <Welcome />
         <Services />
         <Team />
-        <FAQ />
         <Commitment />
+        <FAQ />
         <Contact />
       </main>
       <Footer />

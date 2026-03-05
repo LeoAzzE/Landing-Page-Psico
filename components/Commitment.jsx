@@ -1,199 +1,155 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, Check, Pause, Play } from "lucide-react";
+import { motion } from "framer-motion";
+import { Check, ChevronLeft, ChevronRight } from "lucide-react";
 import { commitmentItems } from "@/lib/site-config";
-import { Badge } from "@/components/ui/badge";
+import { SectionTitle } from "@/components/SectionTitle";
 
-const ROTATE_SECONDS = 5;
+const ROTATE_SECONDS = 6;
+const n = commitmentItems.length;
+
+function getImg(item) {
+  return typeof item === "string" ? null : item.image;
+}
+function getTitle(item) {
+  return typeof item === "string" ? item : item.title;
+}
 
 export function Commitment() {
   const [index, setIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
+  const [imageError, setImageError] = useState({});
   const intervalRef = useRef(null);
 
-  useEffect(() => {
-    if (paused) return;
+  const resetInterval = () => {
+    clearInterval(intervalRef.current);
     intervalRef.current = setInterval(() => {
-      setIndex((i) => (i + 1) % commitmentItems.length);
+      setIndex((i) => (i + 1) % n);
     }, ROTATE_SECONDS * 1000);
-    return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
-    };
-  }, [paused]);
+  };
+
+  useEffect(() => {
+    resetInterval();
+    return () => clearInterval(intervalRef.current);
+  }, []);
 
   const goTo = (newIndex) => {
     setIndex(newIndex);
+    resetInterval();
   };
+  const prev = () => goTo((index - 1 + n) % n);
+  const next = () => goTo((index + 1) % n);
 
-  const prev = () => {
-    setIndex((i) => (i === 0 ? commitmentItems.length - 1 : i - 1));
-  };
+  const prevIdx = (index - 1 + n) % n;
+  const nextIdx = (index + 1) % n;
 
-  const next = () => {
-    setIndex((i) => (i + 1) % commitmentItems.length);
-  };
+  const slots = [
+    { i: prevIdx, role: "side" },
+    { i: index,   role: "active" },
+    { i: nextIdx, role: "side" },
+  ];
 
   return (
-    <section className="bg-white py-12 sm:py-20 md:py-28 overflow-x-hidden">
+    <section className="bg-slate-50/80 py-14 sm:py-20 md:py-24 overflow-x-hidden">
       <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8">
-        {/* Header */}
+
+        <SectionTitle
+          badge="Nossos valores"
+          title="Nosso compromisso"
+          className="mb-10 sm:mb-12"
+        />
+
+        {/* Carrossel com foco central */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center"
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="flex items-center gap-3 sm:gap-5"
         >
-          <Badge variant="outline" className="mb-3 sm:mb-4 text-xs sm:text-sm">
-            Nossos valores
-          </Badge>
-          <h2 className="text-2xl font-bold text-[var(--primary)] sm:text-3xl md:text-4xl">
-            Nosso compromisso
-          </h2>
-          <p className="mx-auto mt-3 sm:mt-4 max-w-2xl text-base sm:text-lg text-slate-500 px-2">
-            Ética e sigilo profissional, centralidade da psicoterapia como base do cuidado e atuação alinhada à legislação vigente.
-          </p>
-        </motion.div>
-
-        {/* Slider */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="mt-8 sm:mt-12"
-        >
-          <div
-            className="relative overflow-hidden rounded-2xl sm:rounded-3xl bg-gradient-to-br from-[var(--primary)]/5 via-white to-[var(--accent)]/5 shadow-lg"
-            onMouseEnter={() => setPaused(true)}
-            onMouseLeave={() => setPaused(false)}
+          {/* Seta esquerda */}
+          <button
+            type="button"
+            onClick={prev}
+            className="shrink-0 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 shadow-sm transition-all hover:bg-[var(--primary)] hover:text-white hover:border-[var(--primary)] focus:outline-none cursor-pointer"
+            aria-label="Anterior"
           >
-            {/* Background pattern */}
-            <div className="absolute inset-0 opacity-5" style={{
-              backgroundImage: `radial-gradient(circle, var(--primary) 1px, transparent 1px)`,
-              backgroundSize: '20px 20px'
-            }} />
+            <ChevronLeft className="h-5 w-5" />
+          </button>
 
-            {/* Content */}
-            <div className="relative min-h-[180px] flex items-center justify-center px-10 py-10 sm:min-h-[200px] sm:px-16 sm:py-12 md:min-h-[240px] md:px-24">
-              <AnimatePresence mode="wait">
+          {/* Imagens */}
+          <div className="flex flex-1 items-center gap-3 sm:gap-5 overflow-hidden">
+            {slots.map(({ i, role }) => {
+              const img = getImg(commitmentItems[i]);
+              const title = getTitle(commitmentItems[i]);
+              const isActive = role === "active";
+              return (
                 <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.4 }}
-                  className="flex flex-col items-center gap-3 sm:gap-4 text-center"
+                  key={i}
+                  animate={{
+                    opacity: isActive ? 1 : 0.4,
+                    scale: isActive ? 1 : 0.88,
+                    filter: isActive ? "blur(0px)" : "blur(3px)",
+                  }}
+                  transition={{ duration: 0.5, ease: "easeInOut" }}
+                  onClick={() => !isActive && goTo(i)}
+                  className={`relative overflow-hidden rounded-2xl ${
+                    isActive
+                      ? "flex-[2] shadow-xl cursor-default"
+                      : "flex-[1] shadow-sm cursor-pointer"
+                  }`}
+                  style={{ aspectRatio: "3/4" }}
                 >
-                  <div className="flex h-12 w-12 sm:h-16 sm:w-16 items-center justify-center rounded-xl sm:rounded-2xl bg-gradient-to-br from-[var(--primary)] to-[var(--accent)] shadow-lg">
-                    <Check className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
-                  </div>
-                  <p className="max-w-lg text-base sm:text-xl md:text-2xl font-semibold text-[var(--primary)] px-2">
-                    {commitmentItems[index]}
-                  </p>
+                  {img && !imageError[i] ? (
+                    <img
+                      src={img}
+                      alt={title}
+                      className="absolute inset-0 w-full h-full object-cover object-center"
+                      loading="lazy"
+                      decoding="async"
+                      onError={() => setImageError((prev) => ({ ...prev, [i]: true }))}
+                    />
+                  ) : (
+                    <div className="flex h-full items-center justify-center bg-slate-100">
+                      <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-[var(--primary)]/10 text-[var(--primary)]">
+                        <Check className="h-8 w-8" />
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Título do item sobreposto na parte superior — só na imagem ativa */}
+                  {isActive && (
+                    <div className="absolute inset-x-0 top-0 h-2/5 bg-gradient-to-b from-black/75 via-black/30 to-transparent pointer-events-none" />
+                  )}
+                  {isActive && (
+                    <motion.div
+                      key={title}
+                      initial={{ opacity: 0, y: -8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.45 }}
+                      className="absolute top-0 inset-x-0 px-5 pt-5 sm:px-6 sm:pt-6 pointer-events-none"
+                    >
+                      <p className="text-base sm:text-lg md:text-xl font-semibold text-white leading-snug drop-shadow-md">
+                        {title}
+                      </p>
+                    </motion.div>
+                  )}
                 </motion.div>
-              </AnimatePresence>
-            </div>
-
-            {/* Navigation arrows */}
-            <button
-              type="button"
-              onClick={prev}
-              className="absolute cursor-pointer left-2 sm:left-4 top-1/2 flex h-9 w-9 sm:h-12 sm:w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-[var(--primary)] shadow-md backdrop-blur-sm transition-all hover:bg-white hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:ring-offset-2"
-              aria-label="Compromisso anterior"
-            >
-              <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" />
-            </button>
-            <button
-              type="button"
-              onClick={next}
-              className="absolute cursor-pointer right-2 sm:right-4 top-1/2 flex h-9 w-9 sm:h-12 sm:w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-[var(--primary)] shadow-md backdrop-blur-sm transition-all hover:bg-white hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:ring-offset-2"
-              aria-label="Próximo compromisso"
-            >
-              <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" />
-            </button>
-
-            {/* Indicators and play/pause */}
-            <div className="absolute bottom-4 sm:bottom-6 left-1/2 flex -translate-x-1/2 items-center gap-3 sm:gap-4">
-              <button
-                type="button"
-                onClick={() => setPaused(!paused)}
-                className="flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-full bg-white/80 text-[var(--primary)] shadow-sm backdrop-blur-sm transition-all hover:bg-white"
-                aria-label={paused ? "Reproduzir" : "Pausar"}
-              >
-                {paused ? (
-                  <Play className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-                ) : (
-                  <Pause className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-                )}
-              </button>
-              <div className="flex gap-1.5 sm:gap-2">
-                {commitmentItems.map((_, i) => (
-                  <button
-                    key={i}
-                    type="button"
-                    onClick={() => goTo(i)}
-                    className="group relative h-1.5 sm:h-2 overflow-hidden rounded-full transition-all duration-300 focus:outline-none"
-                    style={{
-                      width: i === index ? "1.5rem" : "0.375rem",
-                      backgroundColor: i === index ? "var(--primary)" : "var(--border)",
-                    }}
-                    aria-label={`Compromisso ${i + 1} de ${commitmentItems.length}`}
-                    aria-current={i === index ? "true" : undefined}
-                  >
-                    {i === index && !paused && (
-                      <motion.div
-                        initial={{ width: "0%" }}
-                        animate={{ width: "100%" }}
-                        transition={{ duration: ROTATE_SECONDS, ease: "linear" }}
-                        className="absolute inset-y-0 left-0 bg-[var(--accent)]"
-                      />
-                    )}
-                  </button>
-                ))}
-              </div>
-            </div>
+              );
+            })}
           </div>
+
+          {/* Seta direita */}
+          <button
+            type="button"
+            onClick={next}
+            className="shrink-0 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 shadow-sm transition-all hover:bg-[var(--primary)] hover:text-white hover:border-[var(--primary)] focus:outline-none cursor-pointer"
+            aria-label="Próximo"
+          >
+            <ChevronRight className="h-5 w-5" />
+          </button>
         </motion.div>
 
-        {/* Grid de valores */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-10 sm:mt-16 grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
-        >
-          {commitmentItems.map((item, i) => (
-            <motion.div
-              key={item}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: i * 0.1 }}
-              className={`flex items-center gap-2 sm:gap-3 rounded-lg sm:rounded-xl p-3 sm:p-4 transition-all duration-300 ${
-                i === index
-                  ? "bg-[var(--primary)]/10 shadow-md"
-                  : "bg-slate-50 hover:bg-[var(--primary)]/5"
-              }`}
-            >
-              <div className={`flex h-7 w-7 sm:h-8 sm:w-8 shrink-0 items-center justify-center rounded-md sm:rounded-lg ${
-                i === index
-                  ? "bg-[var(--primary)] text-white"
-                  : "bg-[var(--primary)]/10 text-[var(--primary)]"
-              }`}>
-                <Check className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-              </div>
-              <span className={`text-xs sm:text-sm font-medium ${
-                i === index ? "text-[var(--primary)]" : "text-slate-600"
-              }`}>
-                {item}
-              </span>
-            </motion.div>
-          ))}
-        </motion.div>
       </div>
     </section>
   );

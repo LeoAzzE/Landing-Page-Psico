@@ -26,6 +26,7 @@ import { servicesParaVoce, servicesParaEmpresas, getWhatsAppHref, cta } from "@/
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { SectionTitle } from "@/components/SectionTitle";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const iconMapVoce = [Brain, Heart, Users, Video];
@@ -59,28 +60,6 @@ function ServiceCard({ title, description, icon: Icon, index, delay }) {
   );
 }
 
-function SectionHeader({ badge, title, description, align = "left" }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
-      className={align === "center" ? "text-center" : ""}
-    >
-      <Badge variant="outline" className="mb-3 sm:mb-4 text-xs sm:text-sm">
-        {badge}
-      </Badge>
-      <h2 className="text-2xl font-bold text-[var(--primary)] sm:text-3xl md:text-4xl">
-        {title}
-      </h2>
-      <p className="mt-3 sm:mt-4 max-w-2xl text-base sm:text-lg text-slate-500">
-        {description}
-      </p>
-    </motion.div>
-  );
-}
-
 export function Services() {
   const whatsappHref = getWhatsAppHref();
 
@@ -93,7 +72,8 @@ export function Services() {
             {/* Header da seção */}
             <div className="lg:col-span-4">
               <div className="h-full flex flex-col">
-                <SectionHeader
+                <SectionTitle
+                  align="left"
                   badge="Atendimento Individual"
                   title="Para você"
                   description="Cuidado psicológico responsável, ético e baseado na realidade da vida. Oferecemos um espaço seguro para seu desenvolvimento pessoal."
@@ -158,11 +138,11 @@ export function Services() {
         <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8">
           {/* Header centralizado */}
           <div className="text-center flex flex-col items-center">
-            <SectionHeader
+            <SectionTitle
+              align="center"
               badge="Soluções Corporativas"
               title="Para empresas"
               description="Saúde mental não é discurso. É gestão responsável. Desenvolvemos programas personalizados para fortalecer sua organização."
-              align="center"
             />
             
             <motion.div

@@ -6,6 +6,7 @@ import { Award, ChevronDown } from "lucide-react";
 import { team } from "@/lib/site-config";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { SectionTitle } from "@/components/SectionTitle";
 
 const placeholderImage = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect fill='%23e2e8f0' width='200' height='200'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%2394a3b8' font-family='sans-serif' font-size='14'%3EFoto%3C/text%3E%3C/svg%3E";
 
@@ -103,24 +104,11 @@ export function Team() {
   return (
     <section id="equipe" className="scroll-mt-20 bg-white py-12 sm:py-20 md:py-28 overflow-x-hidden">
       <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center"
-        >
-          <Badge variant="outline" className="mb-3 sm:mb-4 text-xs sm:text-sm">
-            Conheça os profissionais
-          </Badge>
-          <h2 className="text-2xl font-bold text-[var(--primary)] sm:text-3xl md:text-4xl">
-            Nossa equipe
-          </h2>
-          <p className="mx-auto mt-3 sm:mt-4 max-w-3xl text-base sm:text-lg text-slate-500 px-2">
-            A equipe reúne formação técnica, experiência prática e compromisso ético. A psicoterapia é conduzida exclusivamente por profissionais habilitados e registrados no Conselho Regional de Psicologia.
-          </p>
-        </motion.div>
+        <SectionTitle
+          badge="Conheça os profissionais"
+          title="Nossa equipe"
+          description="A equipe reúne formação técnica, experiência prática e compromisso ético. A psicoterapia é conduzida exclusivamente por profissionais habilitados e registrados no Conselho Regional de Psicologia."
+        />
 
         {/* Grid de membros */}
         <div className="mt-10 sm:mt-16 grid gap-6 sm:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">

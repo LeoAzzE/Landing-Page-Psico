@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Clock, MessageSquare, Mail } from "lucide-react";
 import { contact, getWhatsAppHref } from "@/lib/site-config";
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { SectionTitle } from "@/components/SectionTitle";
 
 export function Contact() {
   const whatsappHref = getWhatsAppHref();
@@ -12,24 +12,12 @@ export function Contact() {
   return (
     <section id="contato" className="scroll-mt-20 bg-slate-50 py-12 sm:py-20 md:py-28 overflow-x-hidden">
       <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-10 sm:mb-14"
-        >
-          <Badge variant="outline" className="mb-3 sm:mb-4 text-xs sm:text-sm">
-            Entre em contato
-          </Badge>
-          <h2 className="text-2xl font-bold text-[var(--primary)] sm:text-3xl md:text-4xl">
-            Vamos conversar?
-          </h2>
-          <p className="mx-auto mt-3 sm:mt-4 max-w-2xl text-base sm:text-lg text-slate-500">
-            Estamos prontos para ajudar você ou sua empresa. Entre em contato e agende uma conversa inicial sem compromisso.
-          </p>
-        </motion.div>
+        <SectionTitle
+          badge="Entre em contato"
+          title="Vamos conversar?"
+          description="Estamos prontos para ajudar você ou sua empresa. Entre em contato e agende uma conversa inicial sem compromisso."
+          className="mb-10 sm:mb-14"
+        />
 
         <div className="mx-auto max-w-2xl flex flex-col gap-4 sm:gap-5">
           {/* Card WhatsApp */}
