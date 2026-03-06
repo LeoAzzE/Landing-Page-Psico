@@ -65,7 +65,7 @@ export function Commitment() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="flex items-center gap-3 sm:gap-5"
+          className="flex items-center gap-2 sm:gap-5"
         >
           {/* Seta esquerda */}
           <button
@@ -78,7 +78,7 @@ export function Commitment() {
           </button>
 
           {/* Imagens */}
-          <div className="flex flex-1 items-center gap-3 sm:gap-5 overflow-hidden">
+          <div className="flex flex-1 items-center gap-2 sm:gap-5 overflow-hidden">
             {slots.map(({ i, role }) => {
               const img = getImg(commitmentItems[i]);
               const title = getTitle(commitmentItems[i]);
@@ -95,7 +95,7 @@ export function Commitment() {
                   onClick={() => !isActive && goTo(i)}
                   className={`relative overflow-hidden rounded-2xl ${
                     isActive
-                      ? "flex-[2] shadow-xl cursor-default"
+                      ? "flex-[4] sm:flex-[2] shadow-xl cursor-default"
                       : "flex-[1] shadow-sm cursor-pointer"
                   }`}
                   style={{ aspectRatio: "3/4" }}
@@ -117,9 +117,9 @@ export function Commitment() {
                     </div>
                   )}
 
-                  {/* Título do item sobreposto na parte superior — só na imagem ativa */}
+                  {/* Título do item sobreposto na parte superior — compacto para não cobrir a imagem */}
                   {isActive && (
-                    <div className="absolute inset-x-0 top-0 h-2/5 bg-gradient-to-b from-black/75 via-black/30 to-transparent pointer-events-none" />
+                    <div className="absolute inset-x-0 top-0 h-[18%] sm:h-[22%] md:h-1/4 bg-gradient-to-b from-black/70 via-black/25 to-transparent pointer-events-none" />
                   )}
                   {isActive && (
                     <motion.div
@@ -127,9 +127,9 @@ export function Commitment() {
                       initial={{ opacity: 0, y: -8 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.45 }}
-                      className="absolute top-0 inset-x-0 px-5 pt-5 sm:px-6 sm:pt-6 pointer-events-none"
+                      className="absolute top-0 inset-x-0 px-2 pt-2 sm:px-4 sm:pt-4 md:px-6 md:pt-5 pointer-events-none"
                     >
-                      <p className="text-base sm:text-lg md:text-xl font-semibold text-white leading-snug drop-shadow-md">
+                      <p className="text-[11px] sm:text-sm md:text-base font-semibold text-white leading-tight drop-shadow-md line-clamp-2">
                         {title}
                       </p>
                     </motion.div>

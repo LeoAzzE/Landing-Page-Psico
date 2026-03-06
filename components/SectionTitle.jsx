@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
  * @param {string} title - Título principal
  * @param {string} [description] - Parágrafo opcional abaixo
  * @param {"center"|"left"} [align="center"]
+ * @param {boolean} [centerOnMobile] - Se true, centraliza em telas pequenas e usa align em lg+
  * @param {string} [className]
  * @param {React.ReactNode} [badgeIcon] - Ícone opcional dentro do badge
  */
@@ -18,9 +19,13 @@ export function SectionTitle({
   title,
   description,
   align = "center",
+  centerOnMobile = false,
   className,
   badgeIcon,
 }) {
+  const isCenter = align === "center";
+  const useResponsiveCenter = centerOnMobile && !isCenter;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -28,13 +33,21 @@ export function SectionTitle({
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
       className={cn(
-        align === "center" && "text-center",
-        align === "left" && "text-left",
+        isCenter && "text-center",
+        align === "left" && !centerOnMobile && "text-left",
+        useResponsiveCenter && "text-center lg:text-left",
         className
       )}
     >
       {/* Badge com detalhe decorativo */}
-      <div className={cn("flex items-center gap-2", align === "center" ? "justify-center" : "justify-start")}>
+      <div
+        className={cn(
+          "flex items-center gap-2",
+          isCenter && "justify-center",
+          align === "left" && !centerOnMobile && "justify-start",
+          useResponsiveCenter && "justify-center lg:justify-start"
+        )}
+      >
         <span className="h-px w-6 rounded-full bg-gradient-to-r from-[var(--primary)] to-[var(--accent)]" />
         <Badge variant="outline" className="text-xs sm:text-sm border-[var(--primary)]/40 text-[var(--primary)]">
           {badgeIcon}
@@ -52,7 +65,8 @@ export function SectionTitle({
       <div
         className={cn(
           "mt-3 h-1 rounded-full bg-gradient-to-r from-[var(--primary)] via-[var(--accent)] to-[var(--primary)]",
-          align === "center" ? "mx-auto w-16 sm:w-20" : "w-16 sm:w-20"
+          (isCenter || useResponsiveCenter) ? "mx-auto w-16 sm:w-20" : "w-16 sm:w-20",
+          useResponsiveCenter && "lg:mx-0"
         )}
       />
 
@@ -60,7 +74,8 @@ export function SectionTitle({
         <p
           className={cn(
             "mt-3 sm:mt-4 max-w-3xl text-base sm:text-lg text-slate-500",
-            align === "center" && "mx-auto"
+            (isCenter || useResponsiveCenter) && "mx-auto",
+            useResponsiveCenter && "lg:mx-0"
           )}
         >
           {description}

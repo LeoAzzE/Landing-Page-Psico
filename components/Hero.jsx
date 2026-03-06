@@ -76,7 +76,7 @@ export function Hero() {
               transition={{ duration: 0.6, delay: 0.15 }}
               className="mt-5 max-w-xl text-base leading-relaxed text-slate-600 sm:text-lg"
             >
-              Psicoterapia online com profissionais registrados no CRP. 
+              Psicoterapia online com profissionais registrados no CRP e CRA. 
               Atendimento ético, sigiloso e comprometido com sua história e realidade.
             </motion.p>
 
@@ -162,7 +162,7 @@ export function Hero() {
 
                   {/* Lista de benefícios */}
                   <ul className="mt-6 space-y-3">
-                    {["Primeira sessão de acolhimento", "Ambiente 100% online e seguro", "Profissionais com CRP ativo"].map((item) => (
+                    {["Primeira sessão de acolhimento", "Ambiente 100% online e seguro", "Profissionais com CRP e CRA ativos"].map((item) => (
                       <li key={item} className="flex items-center gap-3 text-sm text-white/90">
                         <CheckCircle2 className="h-5 w-5 text-[var(--accent)]" />
                         {item}

@@ -74,6 +74,7 @@ export function Services() {
               <div className="h-full flex flex-col">
                 <SectionTitle
                   align="left"
+                  centerOnMobile
                   badge="Atendimento Individual"
                   title="Para você"
                   description="Cuidado psicológico responsável, ético e baseado na realidade da vida. Oferecemos um espaço seguro para seu desenvolvimento pessoal."

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Award, ChevronDown } from "lucide-react";
 import { team } from "@/lib/site-config";
@@ -12,6 +12,9 @@ const placeholderImage = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/200
 
 function TeamCard({ member, index }) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
 
   const truncateBio = (text, maxLength = 120) => {
     if (text.length <= maxLength) return text;
@@ -39,13 +42,15 @@ function TeamCard({ member, index }) {
           {/* Gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-[var(--primary)]/60 via-transparent to-transparent" />
 
-          {/* Badge de registro */}
-          <div className="absolute right-3 top-3">
-            <Badge variant="default" className="bg-white/90 text-[var(--primary)] backdrop-blur-sm text-xs">
-              <Award className="mr-1 h-3 w-3" />
-              {member.register}
-            </Badge>
-          </div>
+          {/* Badge de registro — só no cliente para evitar hydration mismatch no Safari/iPhone (ngrok) */}
+          {mounted && (
+            <div className="absolute right-3 top-3">
+              <Badge variant="default" className="bg-white/90 text-[var(--primary)] backdrop-blur-sm text-xs">
+                <Award className="mr-1 h-3 w-3" />
+                {member.register}
+              </Badge>
+            </div>
+          )}
 
           {/* Nome e cargo sobre a imagem */}
           <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5">

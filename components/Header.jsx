@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone, Building2 } from "lucide-react";
 import { site, cta, getWhatsAppHref } from "@/lib/site-config";
@@ -17,9 +18,17 @@ const navLinks = [
 ];
 
 export function Header() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const whatsappHref = getWhatsAppHref();
+
+  const handleLogoClick = (e) => {
+    if (pathname === "/" || pathname === "") {
+      e.preventDefault();
+      window.location.reload();
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,9 +52,10 @@ export function Header() {
         <div className="flex h-16 sm:h-20 min-[1200px]:h-24 items-center justify-between gap-2 sm:gap-4">
           {/* Logo - responsivo para mobile */}
           <Link
-            href="#"
+            href="/"
             className="flex shrink items-center group min-w-0"
             aria-label={`${site.name} - início`}
+            onClick={handleLogoClick}
           >
             <div className="overflow-hidden w-[180px] h-[48px] sm:w-[260px] sm:h-[58px] min-[1200px]:w-[340px] min-[1200px]:h-[72px]">
               <img

@@ -1,9 +1,13 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Heart, ExternalLink, Mail, Phone, Clock } from "lucide-react";
 import { site, contact, getWhatsAppHref } from "@/lib/site-config";
+
+/** Ano exibido só após hidratação para evitar mismatch servidor/cliente (hydration error no mobile/ngrok). */
+const FALLBACK_YEAR = 2025;
 
 const footerLinks = [
   { href: "#home", label: "Home" },
@@ -34,6 +38,11 @@ const legalLinks = [
 
 export function Footer() {
   const whatsappHref = getWhatsAppHref();
+  const [year, setYear] = useState(FALLBACK_YEAR);
+
+  useEffect(() => {
+    setYear(new Date().getFullYear());
+  }, []);
 
   return (
     <footer className="relative overflow-hidden bg-gradient-to-br from-[var(--primary)] via-[var(--primary-dark)] to-[var(--primary)]">
@@ -162,7 +171,7 @@ export function Footer() {
         >
           <div className="flex flex-col items-center justify-between gap-3 sm:gap-4 sm:flex-row">
             <p className="text-xs sm:text-sm text-blue-200 text-center sm:text-left">
-              © {new Date().getFullYear()} {site.name}. Todos os direitos reservados.
+              © {year} {site.name}. Todos os direitos reservados.
             </p>
             <p className="flex items-center gap-1 text-xs sm:text-sm text-blue-200">
               Feito com <Heart className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-red-400" /> para cuidar de você
