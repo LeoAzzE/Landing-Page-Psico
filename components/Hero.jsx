@@ -2,13 +2,13 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight, Calendar, Clock, Shield, Heart, Brain, CheckCircle2 } from "lucide-react";
-import { site, getWhatsAppHref } from "@/lib/site-config";
+import { site, getWhatsAppHref, cta } from "@/lib/site-config";
 import { Button } from "@/components/ui/button";
 
 const credentials = [
-  { icon: Shield, text: "Sigilo garantido" },
-  { icon: Heart, text: "Atendimento humanizado" },
-  { icon: Brain, text: "Base científica" },
+  { icon: Shield, text: "Sigilo e responsabilidade profissional" },
+  { icon: Heart, text: "Escuta qualificada e respeito à história de cada pessoa" },
+  { icon: Brain, text: "Experiência em psicologia e nas relações de trabalho" },
 ];
 
 const stats = [
@@ -19,6 +19,8 @@ const stats = [
 
 export function Hero() {
   const whatsappHref = getWhatsAppHref();
+  const bookingHref = cta.individual.platformUrl || whatsappHref;
+  const isBookingExternal = bookingHref.startsWith("http");
 
   return (
     <section
@@ -53,7 +55,7 @@ export function Hero() {
             >
               <span className="inline-flex items-center gap-2 rounded-full bg-[var(--primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--primary)]">
                 <Heart className="h-4 w-4" />
-                Psicologia Clínica e Organizacional
+                Psicologia, trabalho e desenvolvimento humano
               </span>
             </motion.div>
 
@@ -62,22 +64,21 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="mt-6 text-3xl font-bold tracking-tight text-slate-800 sm:text-4xl md:text-5xl lg:text-[3.25rem] lg:leading-[1.15]"
+              className="mt-6 max-w-xl text-3xl font-bold tracking-tight text-slate-800 sm:text-4xl md:text-5xl lg:text-[3.25rem] lg:leading-[1.15]"
             >
-              Seu espaço seguro para{" "}
-              <span className="text-[var(--primary)]">cuidar da mente</span>{" "}
-              e transformar relações
+              Cuidado com a{" "}
+              <span className="text-[var(--primary)]">saúde mental</span>
+              {" "}e com as relações que fazem parte da vida e do trabalho.
             </motion.h1>
 
-            {/* Subtítulo */}
+            {/* Parágrafo */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.15 }}
               className="mt-5 max-w-xl text-base leading-relaxed text-slate-600 sm:text-lg"
             >
-              Psicoterapia online com profissionais registrados no CRP e CRA. 
-              Atendimento ético, sigiloso e comprometido com sua história e realidade.
+              A Essência Mind oferece psicoterapia online, orientação de carreira, mentoria profissional e soluções para empresas que desejam fortalecer ambientes de trabalho mais saudáveis e produtivos. Nossa atuação integra psicologia, experiência em gestão e desenvolvimento humano, respeitando sempre a história, o contexto e as necessidades de cada pessoa e organização.
             </motion.p>
 
             {/* Credenciais */}
@@ -85,12 +86,12 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 lg:justify-start"
+              className="mt-6 flex flex-wrap items-start justify-center gap-x-6 gap-y-3 lg:justify-start"
             >
               {credentials.map((item) => (
-                <div key={item.text} className="flex items-center gap-2 text-slate-600">
-                  <item.icon className="h-4 w-4 text-[var(--accent)]" />
-                  <span className="text-sm font-medium">{item.text}</span>
+                <div key={item.text} className="flex items-start gap-2 text-slate-600">
+                  <item.icon className="mt-0.5 h-4 w-4 shrink-0 text-[var(--accent)]" />
+                  <span className="text-sm font-medium leading-snug">{item.text}</span>
                 </div>
               ))}
             </motion.div>
@@ -100,20 +101,44 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="mt-8 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:gap-4"
+              className="mt-8 flex w-full max-w-xl flex-col gap-3 lg:max-w-none"
             >
-              <Button asChild size="lg" variant="gradient" className="group text-sm sm:text-base">
-                <a href={whatsappHref} target="_blank" rel="noopener noreferrer">
+              <Button asChild size="lg" variant="gradient" className="group w-full justify-center text-sm sm:text-base">
+                <a
+                  href={bookingHref}
+                  target={isBookingExternal ? "_blank" : undefined}
+                  rel={isBookingExternal ? "noopener noreferrer" : undefined}
+                  aria-label="Agendar psicoterapia. Sessões individuais de acompanhamento psicológico."
+                >
                   <Calendar className="h-4 w-4 sm:h-5 sm:w-5" />
-                  Agendar primeira sessão
+                  Agendar psicoterapia
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </a>
               </Button>
-              <Button asChild size="lg" variant="outline" className="text-sm sm:text-base">
-                <a href="#para-voce">
-                  Conhecer serviços
+              <Button asChild size="lg" variant="outline" className="w-full justify-center text-sm sm:text-base">
+                <a
+                  href={whatsappHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Falar sobre carreira ou trabalho. Orientação de carreira, mentoria profissional e desenvolvimento profissional e pessoal."
+                >
+                  Falar sobre carreira ou trabalho
                 </a>
               </Button>
+              <Button asChild size="lg" variant="outline" className="w-full justify-center text-sm sm:text-base">
+                <a
+                  href="#para-empresas"
+                  aria-label="Soluções para empresas. Gestão de fatores psicossociais, desenvolvimento humano e organizacional, treinamentos, palestras e ambientes de trabalho mais saudáveis e responsáveis."
+                >
+                  Soluções para empresas
+                </a>
+              </Button>
+              <a
+                href="#para-voce"
+                className="inline-flex items-center justify-center text-sm font-medium text-[var(--primary)] hover:underline"
+              >
+                Conheça os serviços
+              </a>
             </motion.div>
 
             {/* Info de horário */}
@@ -128,7 +153,7 @@ export function Hero() {
             </motion.div>
           </div>
 
-          {/* Coluna direita: Card visual */}
+          {/* Coluna direita: Card visual — alinhado ao topo */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -145,7 +170,7 @@ export function Hero() {
                 }} />
                 
                 {/* Conteúdo do card */}
-                <div className="relative">
+                <div className="relative flex flex-col">
                   {/* Ícone */}
                   <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-sm">
                     <Brain className="h-8 w-8" />
@@ -156,13 +181,12 @@ export function Hero() {
                     Cuide da sua saúde mental
                   </h2>
                   <p className="mt-3 text-white/80">
-                    Um espaço de escuta, acolhimento e transformação. 
-                    Psicoterapia com responsabilidade e ética profissional.
+                    Um espaço de escuta, acolhimento e responsabilidade profissional. Aqui cada pessoa encontra um ambiente seguro para falar, refletir e compreender melhor seus desafios pessoais e profissionais.
                   </p>
 
                   {/* Lista de benefícios */}
                   <ul className="mt-6 space-y-3">
-                    {["Primeira sessão de acolhimento", "Ambiente 100% online e seguro", "Profissionais com CRP e CRA ativos"].map((item) => (
+                    {["Primeira sessão de acolhimento", "Atendimento 100% online e seguro", "Ambiente de escuta e confidencialidade"].map((item) => (
                       <li key={item} className="flex items-center gap-3 text-sm text-white/90">
                         <CheckCircle2 className="h-5 w-5 text-[var(--accent)]" />
                         {item}

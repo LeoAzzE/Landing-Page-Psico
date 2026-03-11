@@ -1,12 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { 
-  Heart, 
-  Users, 
-  Building2, 
-  Brain, 
-  Shield, 
+import {
+  Heart,
+  Users,
+  Building2,
+  Brain,
+  Shield,
   Briefcase,
   MessageCircle,
   GraduationCap,
@@ -29,8 +29,8 @@ import { Badge } from "@/components/ui/badge";
 import { SectionTitle } from "@/components/SectionTitle";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-const iconMapVoce = [Brain, Heart, Users, Video];
-const iconMapEmpresas = [Shield, Brain, Heart, MessageCircle, GraduationCap, Award, Scale, Search, Compass, TrendingUp];
+const iconMapVoce = [Brain, Heart, Users, Video, Briefcase];
+const iconMapEmpresas = [Shield, Brain, Heart, MessageCircle, GraduationCap, Award, Scale, Search, Compass, TrendingUp, Users];
 
 function ServiceCard({ title, description, icon: Icon, index, delay }) {
   return (
@@ -77,40 +77,28 @@ export function Services() {
                   centerOnMobile
                   badge="Atendimento Individual"
                   title="Para você"
-                  description="Cuidado psicológico responsável, ético e baseado na realidade da vida. Oferecemos um espaço seguro para seu desenvolvimento pessoal."
+                  description="Cuidado psicológico atento à realidade da vida. Oferecemos um espaço de escuta e reflexão para quem deseja compreender melhor suas emoções, suas relações e os desafios do cotidiano pessoal e profissional."
                 />
-                
+
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.3 }}
-                  className="mt-6 sm:mt-8"
+                  className="mt-6 sm:mt-8 flex flex-col gap-3"
                 >
-                  <Button asChild size="default" variant="gradient" className="group text-sm sm:text-base">
-                    <a href={whatsappHref} target="_blank" rel="noopener noreferrer">
-                      {cta.individual.labelAlt}
+                  <Button asChild size="default" variant="gradient" className="group text-sm sm:text-base w-full sm:w-auto" aria-label="Agendar psicoterapia. Sessões individuais de acompanhamento psicológico.">
+                    <a href={cta.individual.platformUrl || whatsappHref} target="_blank" rel="noopener noreferrer">
+                      Agendar psicoterapia
                       <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </a>
                   </Button>
-                </motion.div>
-
-                {/* Stats - empurrado para o final */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.4 }}
-                  className="mt-auto pt-6 sm:pt-10 grid grid-cols-2 gap-3 sm:gap-6"
-                >
-                  <div className="rounded-xl sm:rounded-2xl bg-[var(--primary)]/5 p-3 sm:p-4">
-                    <p className="text-2xl sm:text-3xl font-bold text-[var(--primary)]">100%</p>
-                    <p className="mt-1 text-xs sm:text-sm text-slate-500">Online e seguro</p>
-                  </div>
-                  <div className="rounded-xl sm:rounded-2xl bg-[var(--accent)]/5 p-3 sm:p-4">
-                    <p className="text-2xl sm:text-3xl font-bold text-[var(--accent)]">12+</p>
-                    <p className="mt-1 text-xs sm:text-sm text-slate-500">Anos de idade atendidos</p>
-                  </div>
+                  <p className="text-xs text-slate-500">Sessões individuais de acompanhamento psicológico.</p>
+                  <Button asChild size="default" variant="outline" className="text-sm sm:text-base w-full sm:w-auto">
+                    <a href={whatsappHref} target="_blank" rel="noopener noreferrer">
+                      Agendar outros serviços
+                    </a>
+                  </Button>
                 </motion.div>
               </div>
             </div>
@@ -141,11 +129,11 @@ export function Services() {
           <div className="text-center flex flex-col items-center">
             <SectionTitle
               align="center"
+              centerOnMobile
               badge="Soluções Corporativas"
               title="Para empresas"
-              description="Saúde mental não é discurso. É gestão responsável. Desenvolvemos programas personalizados para fortalecer sua organização."
+              description="Saúde mental no trabalho não é apenas discurso. É parte da gestão responsável das organizações. A Essência Mind apoia empresas na construção de ambientes de trabalho mais saudáveis, no desenvolvimento de lideranças e na gestão de fatores psicossociais relacionados ao trabalho."
             />
-            
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -156,7 +144,7 @@ export function Services() {
               <Button asChild size="default" variant="gradient" className="group text-sm sm:text-base">
                 <a href={whatsappHref} target="_blank" rel="noopener noreferrer">
                   <Building2 className="h-4 w-4" />
-                  Falar sobre empresas
+                  Falar sobre soluções para empresas
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </a>
               </Button>
@@ -197,7 +185,7 @@ export function Services() {
 
               <TabsContent value="saude">
                 <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-                  {servicesParaEmpresas.slice(0, 5).map((service, index) => (
+                  {servicesParaEmpresas.slice(0, 6).map((service, index) => (
                     <ServiceCard
                       key={service.title}
                       title={service.title}
@@ -212,12 +200,12 @@ export function Services() {
 
               <TabsContent value="desenvolvimento">
                 <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-                  {servicesParaEmpresas.slice(5).map((service, index) => (
+                  {servicesParaEmpresas.slice(6).map((service, index) => (
                     <ServiceCard
                       key={service.title}
                       title={service.title}
                       description={service.description}
-                      icon={iconMapEmpresas[(index + 5) % iconMapEmpresas.length]}
+                      icon={iconMapEmpresas[(index + 6) % iconMapEmpresas.length]}
                       index={index}
                       delay={index * 0.05}
                     />
@@ -235,7 +223,7 @@ export function Services() {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="mt-10 sm:mt-12 text-center text-xs sm:text-sm italic text-slate-500 max-w-2xl mx-auto"
           >
-            Não prometemos resultados rápidos. O foco é amadurecimento profissional, clareza de papel e responsabilidade nas decisões.
+            Não prometemos resultados rápidos. O foco é o amadurecimento profissional, a clareza de papéis e a responsabilidade nas decisões dentro das organizações.
           </motion.p>
         </div>
       </div>

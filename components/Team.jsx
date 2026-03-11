@@ -67,7 +67,7 @@ function TeamCard({ member, index }) {
         <CardContent className="p-4 sm:p-5">
           {/* Linha decorativa */}
           <div className="mb-4 h-1 w-12 rounded-full bg-gradient-to-r from-[var(--primary)] to-[var(--accent-green)]" />
-          
+
           {/* Biografia com expansão */}
           <div className="relative">
             <AnimatePresence mode="wait">
@@ -112,8 +112,20 @@ export function Team() {
         <SectionTitle
           badge="Conheça os profissionais"
           title="Nossa equipe"
-          description="A equipe reúne formação técnica, experiência prática e compromisso ético. A psicoterapia é conduzida exclusivamente por profissionais habilitados e registrados no Conselho Regional de Psicologia."
+          description="A Essência Mind reúne formação técnica, experiência prática e compromisso ético."
         />
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="mt-6 sm:mt-8 mx-auto max-w-2xl text-center space-y-5 sm:space-y-6"
+        >
+          <p className="text-base sm:text-lg text-slate-500 leading-relaxed">
+            Os atendimentos psicológicos são realizados por psicólogos habilitados e registrados no Conselho Regional de Psicologia, garantindo sigilo, responsabilidade profissional e respeito às normas da profissão.
+          </p>
+        </motion.div>
 
         {/* Grid de membros */}
         <div className="mt-10 sm:mt-16 grid gap-6 sm:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
@@ -132,7 +144,7 @@ export function Team() {
         >
           <div className="mx-auto max-w-2xl rounded-xl sm:rounded-2xl bg-gradient-to-r from-[var(--primary)]/5 to-[var(--accent)]/5 p-5 sm:p-8">
             <p className="text-sm sm:text-base text-slate-600">
-              As frentes organizacionais contam com suporte técnico da Administração, garantindo uma abordagem multidisciplinar e completa.
+              As frentes organizacionais contam também com suporte técnico da Administração, garantindo uma abordagem multidisciplinar e integrada nas questões relacionadas ao trabalho, às organizações e ao desenvolvimento humano.
             </p>
           </div>
         </motion.div>
