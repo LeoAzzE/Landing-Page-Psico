@@ -76,7 +76,7 @@ export function Services() {
                   align="left"
                   centerOnMobile
                   badge="Atendimento Individual"
-                  title="Para você"
+                  title="Para Você"
                   description="Cuidado psicológico atento à realidade da vida. Oferecemos um espaço de escuta e reflexão para quem deseja compreender melhor suas emoções, suas relações e os desafios do cotidiano pessoal e profissional."
                 />
 
@@ -131,7 +131,7 @@ export function Services() {
               align="center"
               centerOnMobile
               badge="Soluções Corporativas"
-              title="Para empresas"
+              title="Para Empresas"
               description="Saúde mental no trabalho não é apenas discurso. É parte da gestão responsável das organizações. A Essência Mind apoia empresas na construção de ambientes de trabalho mais saudáveis, no desenvolvimento de lideranças e na gestão de fatores psicossociais relacionados ao trabalho."
             />
             <motion.div
@@ -214,17 +214,6 @@ export function Services() {
               </TabsContent>
             </Tabs>
           </motion.div>
-
-          {/* Nota */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="mt-10 sm:mt-12 text-center text-xs sm:text-sm italic text-slate-500 max-w-2xl mx-auto"
-          >
-            Não prometemos resultados rápidos. O foco é o amadurecimento profissional, a clareza de papéis e a responsabilidade nas decisões dentro das organizações.
-          </motion.p>
         </div>
       </div>
     </section>

@@ -142,11 +142,6 @@ export function Team() {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="mt-10 sm:mt-16 text-center"
         >
-          <div className="mx-auto max-w-2xl rounded-xl sm:rounded-2xl bg-gradient-to-r from-[var(--primary)]/5 to-[var(--accent)]/5 p-5 sm:p-8">
-            <p className="text-sm sm:text-base text-slate-600">
-              As frentes organizacionais contam também com suporte técnico da Administração, garantindo uma abordagem multidisciplinar e integrada nas questões relacionadas ao trabalho, às organizações e ao desenvolvimento humano.
-            </p>
-          </div>
         </motion.div>
       </div>
     </section>

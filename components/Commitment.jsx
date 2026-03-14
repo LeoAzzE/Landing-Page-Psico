@@ -42,7 +42,7 @@ export function Commitment() {
     { i: nextIdx, role: "side" },
   ];
 
-  const { badge, title, intro, mission, vision } = commitmentSection;
+  const { badge, title, intro, mission, vision, afterCards } = commitmentSection;
 
   return (
     <section className="bg-slate-50/80 py-14 sm:py-20 md:py-24 overflow-x-hidden">
@@ -94,6 +94,18 @@ export function Commitment() {
             </p>
           </div>
         </motion.div>
+
+        {afterCards && (
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.2 }}
+            className="mx-auto max-w-2xl text-center text-sm sm:text-base text-slate-500 leading-relaxed mb-14 sm:mb-16"
+          >
+            {afterCards}
+          </motion.p>
+        )}
 
         {/* Valores e compromissos — carrossel */}
         <motion.div

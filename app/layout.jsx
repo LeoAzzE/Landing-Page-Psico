@@ -32,8 +32,8 @@ export const metadata = {
     follow: true,
   },
   icons: {
-    icon: site.logo.main,
-    apple: site.logo.main,
+    icon: site.logo.favicon ?? site.logo.main,
+    apple: site.logo.favicon ?? site.logo.main,
   },
 };
 

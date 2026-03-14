@@ -226,11 +226,7 @@ export function Contact() {
               </CardContent>
             </Card>
           </motion.div>
-
-          {/* CNPJ */}
-          <p className="text-center text-xs text-slate-400">
-            CNPJ: {contact.cnpj}
-          </p>
+          
         </div>
       </div>
     </section>

@@ -13,7 +13,7 @@ export function FAQ() {
         <SectionTitle
           badge="Tire suas dúvidas"
           badgeIcon={<HelpCircle className="mr-1.5 h-3.5 w-3.5 sm:mr-2 sm:h-4 sm:w-4" />}
-          title="Perguntas frequentes"
+          title="Perguntas Frequentes"
           description="Dúvidas comuns sobre nossos serviços e forma de atendimento."
         />
 
