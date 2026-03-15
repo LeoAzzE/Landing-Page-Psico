@@ -101,7 +101,7 @@ export function Header() {
               className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--primary)] px-3 py-1.5 text-xs font-medium text-[var(--primary)] transition-all duration-200 hover:bg-[var(--primary)] hover:text-white"
             >
               <Phone className="h-3.5 w-3.5" />
-              <span className="hidden xl:inline">Agendar consulta</span>
+              <span className="hidden xl:inline">Agendar consulta individual</span>
               <span className="xl:hidden">Agendar</span>
             </motion.a>
             <motion.a

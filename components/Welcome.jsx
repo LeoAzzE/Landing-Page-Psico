@@ -85,18 +85,7 @@ export function Welcome() {
                 administração na compreensão das relações pessoais, profissionais e
                 organizacionais.
               </p>
-              <p className="font-medium text-slate-700">
-                Entre os serviços oferecidos estão:
-              </p>
-              <ul className="list-inside list-disc space-y-1.5 pl-2 text-slate-600">
-                <li>psicoterapia individual</li>
-                <li>atração e seleção de talentos</li>
-                <li>desenvolvimento de carreira</li>
-                <li>mentorias profissionais</li>
-                <li>programas de saúde mental nas empresas</li>
-                <li>levantamento de fatores de risco psicossociais relacionados ao trabalho</li>
-                <li>apoio às organizações na implementação das diretrizes da NR-1 (GRO/PGR)</li>
-              </ul>
+
               <p>
                 Aqui, técnica e humanidade caminham juntas, respeitando sempre a história, o
                 contexto e as possibilidades de cada pessoa e de cada organização.

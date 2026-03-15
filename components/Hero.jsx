@@ -2,19 +2,13 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight, Calendar, Clock, Shield, Heart, Brain, CheckCircle2 } from "lucide-react";
-import { site, getWhatsAppHref, cta } from "@/lib/site-config";
+import { site, getWhatsAppHref, cta, contactSection } from "@/lib/site-config";
 import { Button } from "@/components/ui/button";
 
 const credentials = [
   { icon: Shield, text: "Sigilo e responsabilidade profissional" },
   { icon: Heart, text: "Escuta qualificada e respeito à história de cada pessoa" },
   { icon: Brain, text: "Experiência em psicologia e nas relações de trabalho" },
-];
-
-const stats = [
-  { value: "12+", label: "A partir de 12 anos" },
-  { value: "100%", label: "Online e seguro" },
-  { value: "CRP/CRA", label: "Registros ativos" },
 ];
 
 export function Hero() {
@@ -184,24 +178,22 @@ export function Hero() {
                     Um espaço de escuta, acolhimento e responsabilidade profissional. Aqui cada pessoa encontra um ambiente seguro para falar, refletir e compreender melhor seus desafios pessoais e profissionais.
                   </p>
 
-                  {/* Lista de benefícios */}
-                  <ul className="mt-6 space-y-3">
-                    {["Primeira sessão de acolhimento", "Atendimento 100% online e seguro", "Ambiente de escuta e confidencialidade"].map((item) => (
-                      <li key={item} className="flex items-center gap-3 text-sm text-white/90">
-                        <CheckCircle2 className="h-5 w-5 text-[var(--accent)]" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-
-                  {/* Stats */}
-                  <div className="mt-8 grid grid-cols-3 gap-4 border-t border-white/20 pt-6">
-                    {stats.map((stat) => (
-                      <div key={stat.label} className="text-center">
-                        <p className="text-2xl font-bold">{stat.value}</p>
-                        <p className="text-xs text-white/70">{stat.label}</p>
-                      </div>
-                    ))}
+                  {/* O que esperar do primeiro contato */}
+                  <div className="mt-6 border-t border-white/20 pt-6">
+                    <h3 className="text-sm font-semibold uppercase tracking-wider text-white/90">
+                      {contactSection.firstContactBox.title}
+                    </h3>
+                    <ul className="mt-3 space-y-2">
+                      {contactSection.firstContactBox.items.map((item, i) => (
+                        <li key={i} className="flex items-start gap-2.5 text-sm text-white/90">
+                          <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[var(--accent)]" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <p className="mt-4 text-xs text-white/75 italic leading-relaxed">
+                      {contactSection.firstContactBox.note}
+                    </p>
                   </div>
                 </div>
               </div>

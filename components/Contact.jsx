@@ -199,34 +199,6 @@ export function Contact() {
               </CardContent>
             </Card>
           </motion.div>
-
-          {/* Caixa: O que esperar do primeiro contato */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <Card className="bg-gradient-to-br from-[var(--primary)]/5 to-[var(--accent)]/5 border-0">
-              <CardContent className="p-5 sm:p-6">
-                <h3 className="font-semibold text-slate-700 text-base">
-                  {contactSection.firstContactBox.title}
-                </h3>
-                <ul className="mt-3 space-y-2 text-sm text-slate-600">
-                  {contactSection.firstContactBox.items.map((item, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--primary)]" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <p className="mt-4 text-sm text-slate-600 italic">
-                  {contactSection.firstContactBox.note}
-                </p>
-              </CardContent>
-            </Card>
-          </motion.div>
-          
         </div>
       </div>
     </section>
