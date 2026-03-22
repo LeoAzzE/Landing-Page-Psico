@@ -32,7 +32,11 @@ function TeamCard({ member, index }) {
         {/* Imagem com overlay */}
         <div className="relative aspect-[4/5] overflow-hidden">
           <img
-            src={member.image.startsWith("http") || member.image.startsWith("/") ? member.image : placeholderImage}
+            src={
+              member.image && (member.image.startsWith("http") || member.image.startsWith("/"))
+                ? member.image
+                : placeholderImage
+            }
             alt={member.name}
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
             onError={(e) => {

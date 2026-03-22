@@ -49,24 +49,19 @@ export function Header() {
       )}
     >
       <div className="px-3 sm:px-6 lg:px-12 xl:px-16">
-        <div className="flex h-16 sm:h-20 min-[1200px]:h-24 items-center justify-between gap-2 sm:gap-4">
-          {/* Logo - responsivo para mobile */}
+        <div className="flex h-20 sm:h-24 min-[1200px]:h-32 items-center justify-between gap-2 sm:gap-4">
+          {/* Logo: altura ampla para a tagline no PNG (“Psicologia clínica…”) legível */}
           <Link
             href="/"
-            className="flex shrink items-center group min-w-0"
+            className="flex shrink-0 items-center group min-w-0"
             aria-label={`${site.name} - início`}
             onClick={handleLogoClick}
           >
-            <div className="overflow-hidden w-[180px] h-[48px] sm:w-[260px] sm:h-[58px] min-[1200px]:w-[340px] min-[1200px]:h-[72px]">
-              <img
-                src={site.logo.main}
-                alt={site.name}
-                className="max-w-none object-cover object-center transition-transform duration-300 group-hover:scale-105
-                  w-[180px] h-[130px] -mt-[38px] -ml-[8px]
-                  sm:w-[260px] sm:h-[185px] sm:-mt-[58px] sm:-ml-[12px]
-                  min-[1200px]:w-[340px] min-[1200px]:h-[240px] min-[1200px]:-mt-[80px] min-[1200px]:-ml-[22px]"
-              />
-            </div>
+            <img
+              src={site.logo.main}
+              alt={site.name}
+              className="h-14 w-auto max-h-14 max-w-[min(76vw,312px)] object-contain object-left sm:h-16 sm:max-h-16 sm:max-w-96 min-[1200px]:h-24 min-[1200px]:max-h-24 min-[1200px]:max-w-[540px] transition-transform duration-300 group-hover:scale-[1.02]"
+            />
           </Link>
 
           {/* Navigation - center (aparece apenas em telas >= 1200px) */}
