@@ -1,5 +1,6 @@
 import "./globals.css";
 import { CookieBanner } from "@/components/CookieBanner";
+import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { StructuredData } from "@/components/StructuredData";
 import { site, siteUrl } from "@/lib/site-config";
 
@@ -58,6 +59,7 @@ export default function RootLayout({ children }) {
         </a>
         <div id="conteudo">{children}</div>
         <CookieBanner />
+        <GoogleAnalytics />
       </body>
     </html>
   );

@@ -5,8 +5,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Cookie, X, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-const CONSENT_KEY = "essenciamind_cookie_consent";
+import { CONSENT_KEY, saveConsent } from "@/lib/cookie-consent";
 
 export function CookieBanner() {
   const [visible, setVisible] = useState(false);
@@ -20,7 +19,7 @@ export function CookieBanner() {
   }, []);
 
   function accept(type) {
-    localStorage.setItem(CONSENT_KEY, type);
+    saveConsent(type);
     setVisible(false);
   }
 
