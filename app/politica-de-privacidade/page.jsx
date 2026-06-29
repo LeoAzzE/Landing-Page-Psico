@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowLeft, Shield, Mail, Phone, Clock } from "lucide-react";
-import { site, contact } from "@/lib/site-config";
+import { site, contact, getMailtoHref } from "@/lib/site-config";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
@@ -41,8 +41,7 @@ const sections = [
     title: "5. Compartilhamento de dados",
     content: `Não vendemos nem compartilhamos seus dados pessoais com terceiros para fins comerciais. Podemos compartilhá-los apenas:`,
     list: [
-      "Com prestadores de serviços essenciais (ex.: hospedagem, e-mail), que atuam sob instruções nossas e estão sujeitos a obrigações de confidencialidade.",
-      "Quando exigido por lei, ordem judicial ou autoridade competente.",
+      "Quando exigido por lei, ordem judicial ou autoridade competente."
     ],
   },
   {
@@ -77,6 +76,8 @@ const sections = [
 ];
 
 export default function PrivacyPage() {
+  const mailtoHref = getMailtoHref();
+
   return (
     <div className="min-h-screen bg-[var(--background)]">
       {/* Header */}
@@ -94,7 +95,7 @@ export default function PrivacyPage() {
               <ArrowLeft className="h-4 w-4" />
               Voltar ao site
             </Link>
-            
+
             <div className="mt-6 flex items-start gap-4">
               <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[var(--primary)]/10">
                 <Shield className="h-7 w-7 text-[var(--primary)]" />
@@ -113,7 +114,7 @@ export default function PrivacyPage() {
                 </Badge>
               </div>
             </div>
-            
+
             <p className="mt-6 text-lg text-slate-600">
               A <strong className="text-[var(--primary)]">{site.name ?? "Essência Mind"}</strong> respeita
               e protege a privacidade de seus visitantes e pacientes. Este documento explica como
@@ -151,7 +152,7 @@ export default function PrivacyPage() {
                   ))}
                 </ul>
               )}
-              
+
               {section.title.startsWith("9.") && (
                 <div className="mt-6 rounded-xl bg-slate-50 p-5">
                   <div className="grid gap-4 sm:grid-cols-3">
@@ -160,7 +161,7 @@ export default function PrivacyPage() {
                       <div>
                         <p className="text-xs text-slate-500">E-mail</p>
                         <a
-                          href={`mailto:${contact.email}`}
+                          href={mailtoHref}
                           className="text-sm font-medium text-[var(--primary)] hover:underline"
                         >
                           {contact.email}

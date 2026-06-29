@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Heart, ExternalLink, Mail, Phone, Clock } from "lucide-react";
-import { site, contact, getWhatsAppHref } from "@/lib/site-config";
+import { site, contact, getWhatsAppHref, getMailtoHref } from "@/lib/site-config";
 
 /** Ano exibido só após hidratação para evitar mismatch servidor/cliente (hydration error no mobile/ngrok). */
 const FALLBACK_YEAR = 2025;
@@ -31,13 +31,14 @@ const legalLinks = [
   },
   {
     href: "/nr1-riscos-psicossociais",
-    label: "NR-1 e Riscos Psicossociais",
+    label: "Saúde Mental no Trabalho e NR-1",
     external: false,
   },
 ];
 
 export function Footer() {
   const whatsappHref = getWhatsAppHref();
+  const mailtoHref = getMailtoHref();
   const [year, setYear] = useState(FALLBACK_YEAR);
 
   useEffect(() => {
@@ -82,7 +83,7 @@ export function Footer() {
                 <span>{contact.whatsapp}</span>
               </a>
               <a
-                href={`mailto:${contact.email}`}
+                href={mailtoHref}
                 className="flex items-center gap-2 sm:gap-3 text-sm sm:text-base text-blue-100 transition-colors hover:text-white"
               >
                 <Mail className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0" />

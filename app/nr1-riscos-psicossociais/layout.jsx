@@ -1,7 +1,7 @@
 export const metadata = {
-  title: "NR-1 e Riscos Psicossociais | Essência Mind",
+  title: "Saúde Mental no Trabalho, Riscos Psicossociais e Conformidade Legal | Essência Mind",
   description:
-    "Entenda a NR-1, os riscos psicossociais no trabalho e como sua empresa pode prevenir e cuidar da saúde mental.",
+    "Entenda a NR-1, os riscos psicossociais, legislações relacionadas e como sua empresa pode cuidar da saúde mental no trabalho com conformidade legal.",
 };
 
 export default function NR1Layout({ children }) {

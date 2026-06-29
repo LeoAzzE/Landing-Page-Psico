@@ -1,15 +1,18 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Clock, MessageSquare, Mail, CalendarCheck, ArrowRight } from "lucide-react";
-import { contact, contactSection, cta, getWhatsAppHref } from "@/lib/site-config";
+import { MessageSquare, Mail, CalendarCheck } from "lucide-react";
+import { contact, contactSection, getWhatsAppHref, getMailtoHref } from "@/lib/site-config";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { SectionTitle } from "@/components/SectionTitle";
 
 export function Contact() {
   const whatsappHref = getWhatsAppHref();
-  const platformUrl = cta?.individual?.platformUrl || whatsappHref;
+  const mailtoHref = getMailtoHref();
+  const therapyMailtoHref = getMailtoHref({
+    subject: "Agendamento de psicoterapia - Essência Mind",
+  });
 
   return (
     <section id="contato" className="scroll-mt-20 bg-slate-50 py-12 sm:py-20 md:py-28 overflow-x-hidden">
@@ -102,29 +105,31 @@ export function Contact() {
                     <h3 className="text-lg font-bold text-slate-800">
                       {contactSection.platformCard.title}
                     </h3>
-                    <p className="mt-1 text-slate-600 text-sm">
+                    <p className="mt-2 text-slate-600 text-sm leading-relaxed">
                       {contactSection.platformCard.subtitle}
                     </p>
-                    <p className="mt-1 text-slate-600 text-sm">
-                      {contactSection.platformCard.detail}
-                    </p>
-                    <Button
-                      asChild
-                      className="mt-4 group/btn w-full min-w-0 max-w-full sm:w-auto whitespace-normal text-left"
-                      variant="gradient"
-                      size="default"
-                    >
-                      <a
-                        href={platformUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex flex-wrap items-center justify-center sm:justify-start gap-2 py-2"
-                      >
-                        <span className="break-words sm:hidden">{contactSection.platformCard.buttonLabelShort}</span>
-                        <span className="break-words hidden sm:inline">{contactSection.platformCard.buttonLabel}</span>
-                        <ArrowRight className="h-4 w-4 shrink-0 transition-transform group-hover/btn:translate-x-0.5" />
-                      </a>
-                    </Button>
+                    <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
+                      <Button asChild variant="gradient" className="w-full sm:w-auto">
+                        <a
+                          href={whatsappHref}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center gap-2"
+                        >
+                          <MessageSquare className="h-4 w-4" />
+                          {contactSection.platformCard.whatsappButtonLabel}
+                        </a>
+                      </Button>
+                      <Button asChild variant="outline" className="w-full sm:w-auto">
+                        <a
+                          href={therapyMailtoHref}
+                          className="inline-flex items-center justify-center gap-2"
+                        >
+                          <Mail className="h-4 w-4" />
+                          {contactSection.platformCard.emailButtonLabel}
+                        </a>
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </CardContent>
@@ -133,8 +138,8 @@ export function Contact() {
 
           {/* Card E-mail institucional */}
           <motion.a
-            href={contact.email && !contact.email.includes("inserir") ? `mailto:${contact.email}` : undefined}
-            className={contact.email && !contact.email.includes("inserir") ? "block" : "block cursor-default"}
+            href={mailtoHref}
+            className="block"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -172,33 +177,6 @@ export function Contact() {
               </CardContent>
             </Card>
           </motion.a>
-
-          {/* Horário de atendimento */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.15 }}
-          >
-            <Card>
-              <CardContent className="p-5 sm:p-6">
-                <div className="flex items-start gap-4">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[var(--primary)]/10">
-                    <Clock className="h-6 w-6 text-[var(--primary)]" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-slate-700 text-base">
-                      Horário de atendimento
-                    </h3>
-                    <p className="mt-1 text-slate-600 text-sm">{contact.hours}</p>
-                    <p className="mt-2 text-xs text-slate-400">
-                      {contactSection.hoursNote}
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
         </div>
       </div>
     </section>

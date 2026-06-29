@@ -11,40 +11,100 @@ import {
   Users,
   Lightbulb,
   MessageCircle,
+  Scale,
+  Briefcase,
+  Heart,
+  Globe,
+  UserCheck,
+  Clock,
 } from "lucide-react";
-import { site, contact, getWhatsAppHref } from "@/lib/site-config";
+import { site, getWhatsAppHref } from "@/lib/site-config";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
 const riscosPsicossociais = [
   {
     icon: AlertTriangle,
-    title: "Carga de trabalho excessiva",
-    desc: "Exigências além da capacidade, prazos irreais e sobrecarga mental.",
+    title: "Organização do trabalho",
+    desc: "Sobrecarga de trabalho, excesso de demandas, jornadas prolongadas, ritmo intenso, metas incompatíveis e falta de recursos para execução das atividades.",
   },
   {
     icon: Users,
-    title: "Relações interpessoais",
-    desc: "Conflitos, assédio moral ou sexual, falta de suporte e comunicação hostil.",
-  },
-  {
-    icon: Brain,
-    title: "Falta de autonomia e controle",
-    desc: "Pouca influência sobre as tarefas, horários rígidos e ausência de participação nas decisões.",
+    title: "Liderança e gestão",
+    desc: "Falta de apoio das lideranças, comunicação inadequada, ausência de feedback, pouca participação nas decisões, gestão baseada no medo, cobranças desrespeitosas e estilos de liderança excessivamente autoritários.",
   },
   {
     icon: Shield,
-    title: "Insegurança no emprego",
-    desc: "Medo de demissão, reestruturações constantes e precarização.",
+    title: "Assédio e outras formas de violência no trabalho",
+    desc: "Assédio moral, assédio sexual, discriminação, humilhações, constrangimentos, intimidações, perseguições, isolamento, microviolências e outras condutas abusivas que comprometam a dignidade, a saúde e a segurança psicológica dos trabalhadores.",
+  },
+  {
+    icon: MessageCircle,
+    title: "Relações interpessoais",
+    desc: "Conflitos constantes, falta de respeito, comunicação hostil, ausência de cooperação, isolamento social e dificuldades no relacionamento entre colegas, gestores e equipes.",
+  },
+  {
+    icon: Brain,
+    title: "Autonomia",
+    desc: "Pouca influência sobre a forma de executar o trabalho, ausência de participação nas decisões e baixo controle sobre as atividades.",
+  },
+  {
+    icon: Briefcase,
+    title: "Segurança e estabilidade",
+    desc: "Insegurança quanto ao emprego, mudanças organizacionais frequentes, processos pouco transparentes e incertezas constantes.",
+  },
+  {
+    icon: Clock,
+    title: "Equilíbrio entre vida pessoal e trabalho",
+    desc: "Dificuldade para conciliar demandas profissionais e pessoais, disponibilidade permanente, excesso de horas extras e impactos na qualidade de vida.",
   },
 ];
 
-const obrigacoesEmpresas = [
-  "Identificar e avaliar os riscos psicossociais no ambiente de trabalho.",
-  "Elaborar e implementar medidas de prevenção e controle.",
-  "Promover canais de escuta e acompanhamento (ex.: saúde mental, RH).",
-  "Garantir que as medidas sejam revisadas periodicamente.",
-  "Documentar e comunicar os riscos e as ações tomadas aos trabalhadores.",
+const legislacoesRelacionadas = [
+  {
+    icon: Scale,
+    title: "Lei nº 14.457/2022 – Programa Emprega + Mulheres",
+    desc: "Criada para ampliar a participação e a permanência das mulheres no mercado de trabalho, a lei reúne medidas voltadas à empregabilidade, ao apoio à parentalidade e à promoção de ambientes profissionais mais seguros e inclusivos. Entre suas determinações, estabelece ações de prevenção e combate ao assédio sexual e a outras formas de violência no trabalho, incluindo canais de denúncia, capacitação das lideranças, ações educativas e fortalecimento da atuação da CIPA.",
+  },
+  {
+    icon: Globe,
+    title: "Convenção nº 190 da Organização Internacional do Trabalho (OIT)",
+    desc: "Reconhece o direito de todas as pessoas a um ambiente de trabalho livre de violência e assédio, influenciando políticas públicas e práticas organizacionais voltadas à proteção da dignidade humana.",
+  },
+  {
+    icon: UserCheck,
+    title: "Lei Brasileira de Inclusão (Lei nº 13.146/2015)",
+    desc: "Reforça o compromisso das organizações com a inclusão, acessibilidade e igualdade de oportunidades para pessoas com deficiência.",
+  },
+  {
+    icon: Heart,
+    title: "Estatuto da Igualdade Racial (Lei nº 12.288/2010)",
+    desc: "Contribui para o desenvolvimento de políticas que promovam ambientes de trabalho mais inclusivos e livres de discriminação racial.",
+  },
+];
+
+const acoesEmpresas = [
+  "Identificar e avaliar os fatores de riscos psicossociais.",
+  "Registrar esses riscos dentro do Programa de Gerenciamento de Riscos (PGR).",
+  "Implementar medidas preventivas e corretivas.",
+  "Preparar lideranças para uma gestão mais saudável e respeitosa.",
+  "Desenvolver políticas de prevenção ao assédio e à violência.",
+  "Promover canais de escuta e acolhimento.",
+  "Acompanhar os resultados e revisar continuamente as ações implementadas.",
+  "Fortalecer uma cultura organizacional baseada no respeito, na ética e na segurança psicológica.",
+];
+
+const solucoesEssenciaMind = [
+  "Avaliação de riscos psicossociais alinhada à NR-1.",
+  "Diagnóstico organizacional.",
+  "Programas de promoção da saúde mental.",
+  "Desenvolvimento de lideranças.",
+  "Capacitação sobre assédio moral, assédio sexual e outras formas de violência no trabalho.",
+  "Treinamentos sobre diversidade, inclusão e respeito nas relações profissionais.",
+  "Elaboração de planos de ação para redução dos riscos psicossociais.",
+  "Apoio à implementação das exigências da NR-1 e da Lei nº 14.457/2022.",
+  "Acompanhamento psicológico para colaboradores.",
+  "Palestras, workshops e rodas de conversa.",
 ];
 
 export default function NR1RiscosPsicossociaisPage() {
@@ -81,21 +141,31 @@ export default function NR1RiscosPsicossociaisPage() {
               </div>
               <div>
                 <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
-                  NR-1 e Riscos Psicossociais
+                  Saúde Mental no Trabalho, Riscos Psicossociais e Conformidade Legal
                 </h1>
-                <p className="mt-3 text-lg text-blue-100 sm:text-xl">
-                  O que sua empresa precisa saber sobre saúde mental no trabalho
-                </p>
                 <div className="mt-4 h-1 w-20 rounded-full bg-[var(--accent-green)]" />
               </div>
             </div>
 
-            <p className="mt-8 max-w-2xl text-base leading-relaxed text-blue-100/90 sm:text-lg">
-              A <strong className="text-white">Norma Regulamentadora nº 1 (NR-1)</strong> estabelece
-              as disposições gerais sobre segurança e saúde no trabalho no Brasil. Com as
-              atualizações recentes, os <strong className="text-white">riscos psicossociais</strong>{" "}
-              passaram a ser explicitamente considerados — e as empresas precisam estar atentas.
-            </p>
+            <div className="mt-8 max-w-3xl space-y-4 text-base leading-relaxed text-blue-100/90 sm:text-lg">
+              <p>
+                As organizações vivem um momento de profundas transformações. A pressão por
+                resultados, as mudanças nas formas de trabalho, o aumento dos afastamentos por
+                transtornos mentais, as dificuldades para atrair e reter talentos e a necessidade
+                de construir ambientes mais seguros tornaram a saúde mental um tema estratégico para
+                qualquer empresa.
+              </p>
+              <p>
+                Hoje, cuidar das pessoas deixou de ser apenas uma iniciativa de bem-estar. É também
+                uma responsabilidade prevista em normas regulamentadoras, legislações trabalhistas e
+                políticas de prevenção à violência e à discriminação no ambiente de trabalho.
+              </p>
+              <p>
+                A {site.name} atua apoiando organizações na construção de ambientes psicologicamente
+                mais seguros, saudáveis e alinhados às exigências legais, sempre respeitando a
+                realidade e a cultura de cada empresa.
+              </p>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -121,19 +191,22 @@ export default function NR1RiscosPsicossociaisPage() {
                 </h2>
               </div>
               <p className="mt-5 leading-relaxed text-slate-600">
-                A <strong className="text-slate-700">NR-1</strong> é a norma que define as
-                obrigações gerais de segurança e saúde no trabalho aplicáveis a todos os
-                empregadores e trabalhadores. Ela exige a implementação de um{" "}
-                <strong className="text-slate-700">Sistema de Gestão de Segurança e Saúde no
-                Trabalho (SG-SST)</strong>, que inclui a identificação de perigos, a avaliação e o
-                controle de riscos — e isso passa a abranger também os{" "}
-                <strong className="text-[var(--primary)]">riscos psicossociais</strong>.
+                A <strong className="text-slate-700">Norma Regulamentadora nº 1 (NR-1)</strong>,
+                atualizada pela Portaria MTE nº 1.419/2024, estabelece as diretrizes gerais para a
+                gestão da Segurança e Saúde no Trabalho por meio do Gerenciamento de Riscos
+                Ocupacionais (GRO).
               </p>
               <p className="mt-4 leading-relaxed text-slate-600">
-                Ou seja: cuidar da saúde mental no trabalho não é apenas uma boa prática — é uma
-                exigência normativa. Empresas que ignoram fatores como sobrecarga, assédio, falta de
-                autonomia e insegurança no emprego podem estar em desacordo com a legislação e,
-                além disso, colocam em risco o bem-estar e a produtividade das pessoas.
+                Entre as mudanças mais importantes está a necessidade de identificar, avaliar,
+                controlar e acompanhar também os fatores de riscos psicossociais relacionados ao
+                trabalho, incorporando esses aspectos ao Programa de Gerenciamento de Riscos (PGR).
+              </p>
+              <p className="mt-4 leading-relaxed text-slate-600">
+                Isso significa que fatores como excesso de pressão, jornadas inadequadas, metas
+                incompatíveis com os recursos disponíveis, conflitos interpessoais, assédio,
+                insegurança no emprego, comunicação inadequada, falta de apoio das lideranças e
+                outras condições organizacionais deixam de ser apenas questões de clima ou gestão e
+                passam a integrar a gestão dos riscos ocupacionais.
               </p>
             </CardContent>
           </Card>
@@ -156,10 +229,16 @@ export default function NR1RiscosPsicossociaisPage() {
                 O que são riscos psicossociais?
               </h2>
               <p className="mt-1 text-slate-600">
-                Fatores no trabalho que podem afetar a saúde mental e o bem-estar
+                Fatores presentes na organização do trabalho, na gestão e nas relações profissionais
               </p>
             </div>
           </div>
+
+          <p className="mb-6 leading-relaxed text-slate-600">
+            Riscos psicossociais são fatores presentes na organização do trabalho, na forma de
+            gestão e nas relações profissionais que podem afetar a saúde física, emocional e social
+            dos trabalhadores. Entre eles destacam-se:
+          </p>
 
           <div className="grid gap-4 sm:grid-cols-2">
             {riscosPsicossociais.map((item, index) => (
@@ -184,7 +263,57 @@ export default function NR1RiscosPsicossociaisPage() {
           </div>
         </motion.section>
 
-        {/* Obrigações das empresas */}
+        {/* Outras legislações relacionadas */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4 }}
+          className="mb-16"
+        >
+          <div className="mb-8 flex items-center gap-3">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[var(--primary)]/10">
+              <Scale className="h-6 w-6 text-[var(--primary)]" />
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold text-slate-800 sm:text-3xl">
+                Outras legislações relacionadas
+              </h2>
+              <p className="mt-1 text-slate-600">
+                Normas que dialogam com a saúde mental e a prevenção de violências no trabalho
+              </p>
+            </div>
+          </div>
+
+          <p className="mb-6 leading-relaxed text-slate-600">
+            Além da NR-1, diversas normas e legislações dialogam diretamente com a promoção da saúde
+            mental e a prevenção das violências no ambiente de trabalho.
+          </p>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            {legislacoesRelacionadas.map((item, index) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.35, delay: index * 0.05 }}
+              >
+                <Card className="h-full border-[var(--border)] transition-shadow hover:shadow-md">
+                  <CardContent className="p-5 sm:p-6">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[var(--primary)]/10">
+                      <item.icon className="h-5 w-5 text-[var(--primary)]" />
+                    </div>
+                    <h3 className="mt-4 font-semibold text-slate-800">{item.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-slate-600">{item.desc}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </motion.section>
+
+        {/* O que as empresas precisam fazer */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -199,14 +328,15 @@ export default function NR1RiscosPsicossociaisPage() {
                   <Shield className="h-6 w-6 text-[var(--primary)]" />
                 </div>
                 <h2 className="text-2xl font-bold text-slate-800 sm:text-3xl">
-                  Obrigações das empresas
+                  O que as empresas precisam fazer?
                 </h2>
               </div>
               <p className="mt-4 text-slate-600">
-                No âmbito do SG-SST e da NR-1, as empresas devem, entre outras ações:
+                Cada organização possui uma realidade diferente, mas, de forma geral, espera-se que
+                sejam desenvolvidas ações como:
               </p>
               <ul className="mt-5 space-y-3">
-                {obrigacoesEmpresas.map((item, i) => (
+                {acoesEmpresas.map((item, i) => (
                   <li key={i} className="flex gap-3 text-slate-700">
                     <span
                       className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[var(--accent-green)]"
@@ -229,36 +359,50 @@ export default function NR1RiscosPsicossociaisPage() {
         >
           <Card className="overflow-hidden border-[var(--border)] bg-gradient-to-br from-[var(--primary)]/5 via-white to-[var(--accent-green)]/5 shadow-sm">
             <CardContent className="p-6 sm:p-8 lg:p-10">
-              <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-                <div className="flex items-start gap-4">
-                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[var(--primary)]/10">
-                    <Lightbulb className="h-7 w-7 text-[var(--primary)]" />
-                  </div>
-                  <div>
-                    <h2 className="text-2xl font-bold text-slate-800 sm:text-3xl">
-                      Como a {site.name} pode ajudar
-                    </h2>
-                    <p className="mt-3 max-w-xl leading-relaxed text-slate-600">
-                      Oferecemos palestras, treinamentos e programas voltados à saúde mental no
-                      trabalho, prevenção de assédio e construção de ambientes mais saudáveis.
-                      Ajudamos sua empresa a alinhar prática e norma, com foco em pessoas e
-                      resultados.
-                    </p>
-                  </div>
+              <div className="flex items-start gap-4">
+                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[var(--primary)]/10">
+                  <Lightbulb className="h-7 w-7 text-[var(--primary)]" />
                 </div>
-                <div className="shrink-0">
-                  <Button asChild size="lg" variant="gradient" className="w-full sm:w-auto">
-                    <a
-                      href={whatsappHref}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2"
-                    >
-                      <MessageCircle className="h-5 w-5" />
-                      Falar com a equipe
-                    </a>
-                  </Button>
+                <div className="min-w-0 flex-1">
+                  <h2 className="text-2xl font-bold text-slate-800 sm:text-3xl">
+                    Como a {site.name} pode ajudar?
+                  </h2>
+                  <p className="mt-3 leading-relaxed text-slate-600">
+                    A {site.name} integra conhecimentos da Psicologia, Gestão de Pessoas e
+                    Desenvolvimento Organizacional para apoiar empresas na construção de ambientes
+                    de trabalho mais saudáveis, seguros e sustentáveis. Entre nossas soluções estão:
+                  </p>
+                  <ul className="mt-5 space-y-3">
+                    {solucoesEssenciaMind.map((item, i) => (
+                      <li key={i} className="flex gap-3 text-slate-700">
+                        <span
+                          className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[var(--accent-green)]"
+                          aria-hidden
+                        />
+                        <span className="leading-relaxed">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="mt-5 leading-relaxed text-slate-600">
+                    Mais do que apoiar o cumprimento da legislação, nosso objetivo é ajudar as
+                    organizações a desenvolver ambientes em que resultados e cuidado com as pessoas
+                    caminhem juntos, fortalecendo a saúde mental, a qualidade das relações e a
+                    sustentabilidade dos negócios.
+                  </p>
                 </div>
+              </div>
+              <div className="mt-8 flex justify-center sm:justify-start">
+                <Button asChild size="lg" variant="gradient" className="w-full sm:w-auto">
+                  <a
+                    href={whatsappHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2"
+                  >
+                    <MessageCircle className="h-5 w-5" />
+                    Falar com a equipe
+                  </a>
+                </Button>
               </div>
             </CardContent>
           </Card>
