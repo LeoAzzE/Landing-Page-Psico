@@ -11,7 +11,7 @@ export function Contact() {
   const whatsappHref = getWhatsAppHref();
   const mailtoHref = getMailtoHref();
   const therapyMailtoHref = getMailtoHref({
-    subject: "Agendamento de psicoterapia - Essência Mind",
+    subject: "Agendamento de psicoterapia - Essencia Mind",
   });
 
   return (
